@@ -35,7 +35,7 @@ function HeroSection() {
     visible: {
       x: 0,
       opacity: 1,
-      transition: { duration: 0.8, ease: "easeOut" },
+      transition: { duration: 0.6, ease: "easeOut" },
     },
   };
 
