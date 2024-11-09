@@ -1,5 +1,7 @@
 "use client";
 import { Footer, NavBar } from "@/components/layout";
+import { motion } from "framer-motion";
+
 import {
   ArrowRight,
   Camera,
@@ -9,6 +11,7 @@ import {
   Video,
 } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   return (
@@ -26,31 +29,58 @@ export default function Home() {
 }
 
 function HeroSection() {
+  // Animation variants
+  const textVariant = {
+    hidden: { x: -100, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+
   return (
     <div className="w-full relative max-w-7xl mx-auto">
       <div className="relative py-16 md:min-h-[28rem] justify-center h-full z-20 flex flex-col px-4 gap-5">
-        <p className="text-3xl md:text-7xl font-playfair font-medium text-yellow-400">
+        <motion.p
+          className="text-3xl md:text-7xl font-playfair font-medium text-yellow-400"
+          variants={textVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           Capturing Moments
-        </p>
-        <div className="flex items-center gap-6">
+        </motion.p>
+
+        <motion.div
+          className="flex items-center gap-6"
+          variants={textVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           <div className="w-28 h-[1px] bg-yellow-400"></div>
           <p className="text-3xl text-right md:text-left whitespace-nowrap md:text-7xl font-playfair font-medium">
             Creating Memories
           </p>
-        </div>
-        <p className=" text-center md:text-left max-w-xl ">
+        </motion.div>
+
+        <p className="text-center md:text-left max-w-xl">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit nesciunt
           in dicta, pariatur officia maiores sapiente placeat at possimus nulla,
         </p>
-        <div className=" border border-yellow-400 w-fit px-4 text-yellow-400 font-medium hover:bg-yellow-400 hover:text-neutral-900 cursor-pointer duration-300 py-2">
+
+        <div className="border border-yellow-400 w-fit px-4 text-yellow-400 font-medium hover:bg-yellow-400 hover:text-neutral-900 cursor-pointer duration-300 py-2">
           Meet Our Models
         </div>
       </div>
+
       <div className="h-56 md:hidden"></div>
+
       <div className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:right-0 bottom-0 md:top-0 w-11/12 md:w-1/2 z-10">
         <img
           src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/hero.jpg"
-          alt=""
+          alt="hero"
         />
       </div>
     </div>
@@ -58,6 +88,12 @@ function HeroSection() {
 }
 
 function WhatCanIDo() {
+  const [iconWidth, setIconWidth] = useState(60);
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setIconWidth(50);
+    }
+  });
   return (
     <div className="w-full relative overflow-hidden max-w-7xl px-4 py-16 mx-auto">
       <span className="z-0 hidden md:block absolute top-0 right-0 py-0 font-playfair leading-none translate-x-32 font-thin text-neutral-800 text-[20rem]">
@@ -76,11 +112,7 @@ function WhatCanIDo() {
         </p>
         <div className=" flex flex-col md:flex-row gap-8">
           <div className=" flex flex-col gap-4 items-center">
-            <Camera
-              stroke="#facc15"
-              strokeWidth={1}
-              size={window.innerWidth < 768 ? 50 : 60}
-            />
+            <Camera stroke="#facc15" strokeWidth={1} size={iconWidth} />
             <p className=" text-2xl font-semibold ">Photo Shooting</p>
             <p className=" text-gray-300 -mt-3 md:mt-0 text-center">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim
@@ -88,11 +120,7 @@ function WhatCanIDo() {
             </p>
           </div>
           <div className=" flex flex-col gap-4 items-center">
-            <Video
-              stroke="#facc15"
-              strokeWidth={1}
-              size={window.innerWidth < 768 ? 50 : 60}
-            />
+            <Video stroke="#facc15" strokeWidth={1} size={iconWidth} />
             <p className=" text-2xl font-semibold ">Video Shooting</p>
             <p className=" text-gray-300 -mt-3 md:mt-0 text-center">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim
@@ -100,11 +128,7 @@ function WhatCanIDo() {
             </p>
           </div>
           <div className=" flex flex-col gap-4 items-center">
-            <ImagePlus
-              stroke="#facc15"
-              strokeWidth={1}
-              size={window.innerWidth < 768 ? 50 : 60}
-            />
+            <ImagePlus stroke="#facc15" strokeWidth={1} size={iconWidth} />
             <p className=" text-2xl font-semibold ">Photo Editing</p>
             <p className=" text-gray-300 -mt-3 md:mt-0 text-center">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim
@@ -112,11 +136,7 @@ function WhatCanIDo() {
             </p>
           </div>
           <div className=" flex flex-col gap-4 items-center">
-            <Film
-              stroke="#facc15"
-              strokeWidth={1}
-              size={window.innerWidth < 768 ? 50 : 60}
-            />
+            <Film stroke="#facc15" strokeWidth={1} size={iconWidth} />
             <p className=" text-2xl font-semibold ">Video Editing</p>
             <p className=" text-gray-300 -mt-3 md:mt-0 text-center">
               Lorem ipsum dolor sit amet , adipisicing elit. Enim minima
@@ -131,7 +151,7 @@ function WhatCanIDo() {
 
 function AboutUs() {
   return (
-    <div className="mx-auto max-w-7xl flex gap-8 md:gap-24 flex-col-reverse md:flex-row px-4 py-16">
+    <div className="mx-auto max-w-7xl  flex gap-8 md:gap-24 flex-col-reverse md:flex-row px-4 py-8 border-t md:border-none border-neutral-600 md:py-16">
       <div className="w-full shrink-0 md:w-auto h-auto max-h-[28rem] overflow-hidden flex justify-center items-center">
         <img
           className="w-auto h-full md:h-auto max-h-[28rem] object-contain"

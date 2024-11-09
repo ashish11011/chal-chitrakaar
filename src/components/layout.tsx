@@ -205,7 +205,7 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-        <div className=" py-2 border-t border-neutral-600">
+        <div className=" -mt-8 md:mt-0 py-2 border-t border-neutral-600">
           <p className=" text-center text-gray-300 text-sm">
             @ copyright chal chitrakaar{" "}
           </p>
