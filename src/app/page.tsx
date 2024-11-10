@@ -1,5 +1,6 @@
 "use client";
 import { Footer, NavBar } from "@/components/layout";
+import { Testimonials } from "@/components/testimonials";
 import { motion } from "framer-motion";
 
 import {
@@ -14,6 +15,44 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
+  const testimonials = [
+    {
+      quote:
+        "The quality of the videos was beyond our expectations. The attention to detail and creativity really stood out. Highly recommend their services!",
+      name: "Alex Morgan",
+      designation: "Director at MediaScope Productions",
+      src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      quote:
+        "Working with this cameraman was a game-changer for our project. The visuals were stunning and perfectly captured our vision.",
+      name: "Samantha Lee",
+      designation: "Creative Producer at Visionary Films",
+      src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      quote:
+        "Incredible camera work that truly elevates the production value. Professional, skilled, and highly reliable!",
+      name: "Daniel Carter",
+      designation: "Executive Producer at Epic Studios",
+      src: "https://images.unsplash.com/photo-1623582854588-d60de57fa33f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      quote:
+        "Amazing camerawork that captured every detail of our event. The final footage exceeded our expectations and truly told our story.",
+      name: "Ryan Foster",
+      designation: "Event Manager at Prestige Events",
+      src: "https://images.unsplash.com/photo-1636041293178-808a6762ab39?q=80&w=3464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      quote:
+        "A top-notch professional who delivered outstanding results for our project. I will definitely work with them again in the future.",
+      name: "Jessica Park",
+      designation: "Marketing Lead at Focus Films",
+      src: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+  ];
+
   return (
     <div className="w-full min-h-screen">
       <NavBar />
@@ -22,6 +61,8 @@ export default function Home() {
       <AboutUs />
       <Portfolio />
       <PhasesOfWork />
+      <div className=" h-20 md:h-40"></div>
+      <Testimonials testimonials={testimonials} />
       <div className="h-32"></div>
       <Footer />
     </div>
