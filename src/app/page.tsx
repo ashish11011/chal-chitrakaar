@@ -1,6 +1,7 @@
 "use client";
 import { Footer, NavBar } from "@/components/layout";
-import { Testimonials } from "@/components/testimonials";
+import TestimonialSection from "@/components/testimonials";
+import { InitialForm } from "@/components/websiteLoadForm";
 import { motion } from "framer-motion";
 
 import {
@@ -12,59 +13,59 @@ import {
   Video,
 } from "lucide-react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const testimonials = [
+  const currentRoute = usePathname();
+  const testimonials: any = [
     {
-      quote:
-        "The quality of the videos was beyond our expectations. The attention to detail and creativity really stood out. Highly recommend their services!",
+      msg: "The quality of the videos was beyond our expectations. The attention to detail and creativity really stood out. Highly recommend their services!",
       name: "Alex Morgan",
       designation: "Director at MediaScope Productions",
-      src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      img: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-      quote:
-        "Working with this cameraman was a game-changer for our project. The visuals were stunning and perfectly captured our vision.",
+      msg: "Working with this cameraman was a game-changer for our project. The visuals were stunning and perfectly captured our vision.",
       name: "Samantha Lee",
       designation: "Creative Producer at Visionary Films",
-      src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-      quote:
-        "Incredible camera work that truly elevates the production value. Professional, skilled, and highly reliable!",
+      msg: "Incredible camera work that truly elevates the production value. Professional, skilled, and highly reliable!",
       name: "Daniel Carter",
       designation: "Executive Producer at Epic Studios",
-      src: "https://images.unsplash.com/photo-1623582854588-d60de57fa33f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      img: "https://images.unsplash.com/photo-1623582854588-d60de57fa33f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-      quote:
-        "Amazing camerawork that captured every detail of our event. The final footage exceeded our expectations and truly told our story.",
+      msg: "Amazing camerawork that captured every detail of our event. The final footage exceeded our expectations and truly told our story.",
       name: "Ryan Foster",
       designation: "Event Manager at Prestige Events",
-      src: "https://images.unsplash.com/photo-1636041293178-808a6762ab39?q=80&w=3464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      img: "https://images.unsplash.com/photo-1636041293178-808a6762ab39?q=80&w=3464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-      quote:
-        "A top-notch professional who delivered outstanding results for our project. I will definitely work with them again in the future.",
+      msg: "A top-notch professional who delivered outstanding results for our project. I will definitely work with them again in the future.",
       name: "Jessica Park",
       designation: "Marketing Lead at Focus Films",
-      src: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      img: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
   ];
 
   return (
     <div className="w-full min-h-screen">
-      <NavBar />
+      <NavBar currentRoute={currentRoute} />
       <HeroSection />
       <WhatCanIDo />
       <AboutUs />
       <Portfolio />
       <PhasesOfWork />
-      <div className=" h-20 md:h-40"></div>
-      <Testimonials testimonials={testimonials} />
+      <TestimonialSection
+        testimonialDataCol1={testimonials}
+        testimonialDataCol2={testimonials}
+        testimonialDataCol3={testimonials}
+      />
       <div className="h-32"></div>
-      <Footer />
+      <Footer currentRoute={currentRoute} />
     </div>
   );
 }
@@ -82,9 +83,11 @@ function HeroSection() {
 
   return (
     <div className="w-full relative max-w-7xl mx-auto">
+      <InitialForm />
       <div className="relative py-16 md:min-h-[28rem] justify-center h-full z-20 flex flex-col px-4 gap-5">
         <motion.p
-          className="text-3xl md:text-7xl font-playfair font-medium text-yellow-400"
+          // className="text-3xl md:text-7xl font-playfair font-medium text-yellow-400"
+          className="text-3xl md:text-7xl font-playfair font-medium text-[#20a39e]"
           variants={textVariant}
           initial="hidden"
           whileInView="visible"
@@ -101,12 +104,12 @@ function HeroSection() {
           viewport={{ once: true }}
         >
           <div className="w-28 h-[1px] bg-yellow-400"></div>
-          <p className="text-3xl text-right md:text-left whitespace-nowrap md:text-7xl font-playfair font-medium">
+          <p className="text-3xl text-right md:text-left text-white whitespace-nowrap md:text-7xl font-playfair font-medium">
             Creating Memories
           </p>
         </motion.div>
 
-        <p className="text-center md:text-left max-w-xl">
+        <p className="text-center text-white md:text-left max-w-xl">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit nesciunt
           in dicta, pariatur officia maiores sapiente placeat at possimus nulla,
         </p>
@@ -143,26 +146,30 @@ function WhatCanIDo() {
 
       <div className="relative z-20 flex flex-col gap-6">
         <div className="flex flex-col gap-2 w-fit mx-auto">
-          <p className=" text-xl md:text-3xl font-playfair font-medium">
+          <p className=" text-xl text-white md:text-3xl font-playfair font-medium">
             My Services
           </p>
           <div className="w-full h-[1px] bg-yellow-400 -translate-x-8"></div>
         </div>
-        <p className=" text-5xl md:text-7xl text-center font-medium font-playfair">
+        <p className=" text-white text-5xl md:text-7xl text-center font-medium font-playfair">
           What Can I Do
         </p>
         <div className=" flex flex-col md:flex-row gap-8">
           <div className=" flex flex-col gap-4 items-center">
             <Camera stroke="#facc15" strokeWidth={1} size={iconWidth} />
-            <p className=" text-2xl font-semibold ">Photo Shooting</p>
-            <p className=" text-gray-300 -mt-3 md:mt-0 text-center">
+            <p className=" text-2xl font-semibold text-white ">
+              Photo Shooting
+            </p>
+            <p className=" text-gray-300  -mt-3 md:mt-0 text-center">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim
               minima voluptatem ullam dolorem{" "}
             </p>
           </div>
           <div className=" flex flex-col gap-4 items-center">
             <Video stroke="#facc15" strokeWidth={1} size={iconWidth} />
-            <p className=" text-2xl font-semibold ">Video Shooting</p>
+            <p className=" text-2xl font-semibold text-white ">
+              Video Shooting
+            </p>
             <p className=" text-gray-300 -mt-3 md:mt-0 text-center">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim
               minima voluptatem ullam dolorem{" "}
@@ -170,7 +177,7 @@ function WhatCanIDo() {
           </div>
           <div className=" flex flex-col gap-4 items-center">
             <ImagePlus stroke="#facc15" strokeWidth={1} size={iconWidth} />
-            <p className=" text-2xl font-semibold ">Photo Editing</p>
+            <p className=" text-2xl font-semibold text-white ">Photo Editing</p>
             <p className=" text-gray-300 -mt-3 md:mt-0 text-center">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim
               minima voluptatem ullam dolorem{" "}
@@ -178,7 +185,7 @@ function WhatCanIDo() {
           </div>
           <div className=" flex flex-col gap-4 items-center">
             <Film stroke="#facc15" strokeWidth={1} size={iconWidth} />
-            <p className=" text-2xl font-semibold ">Video Editing</p>
+            <p className=" text-2xl font-semibold text-white ">Video Editing</p>
             <p className=" text-gray-300 -mt-3 md:mt-0 text-center">
               Lorem ipsum dolor sit amet , adipisicing elit. Enim minima
               voluptatem ullam dolorem
@@ -202,12 +209,12 @@ function AboutUs() {
       </div>
       <div className=" w-full flex flex-col gap-6">
         <div className="flex flex-col gap-2 mx-auto md:mx-0 w-fit">
-          <p className=" text-xl md:text-3xl font-playfair font-medium">
+          <p className=" text-xl text-white md:text-3xl font-playfair font-medium">
             About Us
           </p>
           <div className="w-full h-[1px] bg-yellow-400 -translate-x-8"></div>
         </div>
-        <p className=" text-4xl md:text-7xl text-center md:text-left font-medium font-playfair">
+        <p className=" text-4xl text-white md:text-7xl text-center md:text-left font-medium font-playfair">
           About Chal Chitrakar
         </p>
         <p className=" max-w-xl text-center text-gray-300 self-end">
@@ -215,7 +222,7 @@ function AboutUs() {
           animi possimus vel fugit, ipsa quisquam deleniti deserunt temporibus
           modi reiciendis exercitationem,
         </p>
-        <ReadMore link={"/about-us"} />
+        <ReadMore link={"/about-me"} />
       </div>
     </div>
   );
@@ -228,7 +235,7 @@ function ReadMore({ link }: { link: string }) {
         href={link}
         className=" size-16 rounded-full flex items-center cursor-pointer justify-center border group border-yellow-400 "
       >
-        <div className=" translate-x-1/2 bg-neutral-900 py-1 flex gap-2 items-center group-hover:gap-4 duration-300 uppercase whitespace-nowrap">
+        <div className=" text-white translate-x-1/2 bg-neutral-900 py-1 flex gap-2 items-center group-hover:gap-4 duration-300 uppercase whitespace-nowrap">
           Read More <ArrowRight stroke="#facc15" strokeWidth={1.5} size={20} />
         </div>
       </Link>
@@ -249,7 +256,7 @@ function WeddingCard() {
   return (
     <div className=" px-4 md:px-0 border-y max-w-7xl mx-auto flex gap-6 md:h-[34rem] flex-col md:flex-row">
       <div className=" w-full h-full flex flex-col">
-        <p className=" text-5xl font-medium font-playfair py-7 md:py-12">
+        <p className=" text-white text-5xl font-medium font-playfair py-7 md:py-12">
           Wedding
         </p>
         <img
@@ -271,13 +278,13 @@ function WeddingCard() {
           src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding-3.jpg"
           alt=""
         />
-        <div className=" flex flex-col gap-6 py-6 ">
+        <div className=" text-white flex flex-col gap-6 py-6 ">
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
             quod recusandae, officiis voluptatibus incidunt magnam quae
             aspernatur velit doloribus corrupti dicta{" "}
           </p>
-          <ReadMore link={"/portfolio"} />
+          <ReadMore link={""} />
         </div>
       </div>
     </div>
@@ -293,13 +300,13 @@ function Family() {
           src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/family-1.jpg"
           alt=""
         />
-        <div className=" flex flex-col gap-6 py-6 ">
+        <div className=" text-white flex flex-col gap-6 py-6 ">
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
             quod recusandae, officiis voluptatibus incidunt magnam quae
             aspernatur velit doloribus corrupti dicta{" "}
           </p>
-          <ReadMore link={"/portfolio"} />
+          <ReadMore link={""} />
         </div>
       </div>
       <div className=" hidden md:block w-full h-full">
@@ -311,7 +318,7 @@ function Family() {
       </div>
 
       <div className=" w-full h-full flex flex-col md:flex-col-reverse">
-        <p className=" text-5xl font-medium font-playfair py-7 md:py-12">
+        <p className=" text-white text-5xl font-medium font-playfair py-7 md:py-12">
           Famliy
         </p>
         <img
@@ -352,10 +359,10 @@ function PhasesOfWork() {
     <div className=" mt-20 md:mt-32 mx-auto max-w-7xl flex flex-col gap-8">
       <div className=" pl-0 md:pl-40 flex gap-4 flex-col">
         <div className="flex flex-col gap-2 mx-auto md:mx-0 w-fit">
-          <p className=" text-xl font-medium">Process</p>
+          <p className=" text-xl font-medium text-white">Process</p>
           <div className="w-full h-[1px] bg-yellow-400 -translate-x-8"></div>
         </div>
-        <p className=" text-4xl md:text-6xl text-center md:text-left font-medium font-playfair">
+        <p className=" text-white text-4xl md:text-6xl text-center md:text-left font-medium font-playfair">
           Phases of Work
         </p>
       </div>
@@ -369,12 +376,12 @@ function PhasesOfWork() {
           {PhasesOfWork.map((item, index) => {
             return (
               <div key={index} className=" flex flex-col ">
-                <div className=" flex items-center gap-2">
+                <div className=" text-white flex items-center gap-2">
                   <p>0{index + 1}</p>
                   <div className=" w-full h-[1px] bg-yellow-400"></div>
                 </div>
                 <div className=" md:pl-8 py-3 flex flex-col gap-2 md:gap-3">
-                  <p className=" text-3xl md:text-4xl font-playfair font-medium">
+                  <p className=" text-white text-3xl md:text-4xl font-playfair font-medium">
                     {item.title}
                   </p>
                   <p className=" text-gray-200 font-thin md:text-base">
