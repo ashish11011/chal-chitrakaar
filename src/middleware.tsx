@@ -7,8 +7,10 @@ export function middleware(request: NextRequest) {
   const cookie = request.cookies.get("hash");
   if (cookie?.value === process.env.ADMIN_HASH) {
     return NextResponse.next();
+  } else {
+    console.log("not admin");
+    return NextResponse.redirect(new URL("/", request.url));
   }
-  return NextResponse.redirect(new URL("/", request.url));
 
   return NextResponse.next();
 }

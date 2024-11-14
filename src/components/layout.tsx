@@ -248,7 +248,7 @@ export const Footer = ({
               />
               <div
                 onClick={subscribeToNewsletter}
-                className=" border border-yellow-400 w-fit flex gap-2 px-4 text-yellow-400 font-medium hover:bg-yellow-400 hover:text-neutral-900 cursor-pointer duration-300 py-2"
+                className=" border border-yellow-400 w-fit items-center flex gap-2 px-4 text-yellow-400 font-medium hover:bg-yellow-400 hover:text-neutral-900 cursor-pointer duration-300 py-2"
               >
                 {loading && <LoaderCircle className="animate-spin" />}
                 Subscribe
