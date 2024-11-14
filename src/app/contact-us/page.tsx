@@ -3,7 +3,7 @@ import { Footer, NavBar } from "@/components/layout";
 import { Label } from "@/components/ui/label";
 import { LoaderCircle } from "lucide-react";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 
 const Page = () => {
   const currentRoute = usePathname();
@@ -33,6 +33,7 @@ function ContactUsHeader() {
 
 function ContactForm() {
   const [loading, setLoading] = React.useState(false);
+  const [responseMessage, setResponseMessage] = useState("");
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -67,7 +68,17 @@ function ContactForm() {
         number: "",
         message: "",
       });
+      setResponseMessage("Form submitted successfully");
+      setTimeout(() => {
+        setResponseMessage("");
+      }, 3000);
+    } else {
+      setResponseMessage("Error submitting form");
+      setTimeout(() => {
+        setResponseMessage("");
+      }, 3000);
     }
+    setLoading(false);
   }
   return (
     <form className=" max-w-5xl my-24 mx-auto px-6 flex flex-col gap-6">
@@ -115,6 +126,7 @@ function ContactForm() {
           className="py-2 px-4 rounded border border-neutral-600  bg-neutral-800 dark:bg-gray-800 text-gray-200 focus:outline-none"
         ></textarea>
       </div>
+      {responseMessage && <p className="text-white">{responseMessage}</p>}
       <button
         type="submit"
         onClick={(e) => handleFormSubmittion(e)}

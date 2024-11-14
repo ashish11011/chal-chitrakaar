@@ -6,6 +6,8 @@ const ContactUsSchema = new mongoose.Schema(
     email: { type: String, required: true },
     number: { type: String, required: true },
     message: { type: String, required: true },
+    source: { type: String, required: true, default: "contact-us" },
+    isDeleted: { type: Boolean, default: false },
   },
   {
     timestamps: true,
