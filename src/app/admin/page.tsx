@@ -5,6 +5,8 @@ import ContactUsFormDetails from "./contactFormData";
 import NewsLetterData from "./newsletterData";
 import Newsletter from "@/models/newsletterModel";
 
+export const revalidate = 0;
+
 const Page = async () => {
   connect();
 
