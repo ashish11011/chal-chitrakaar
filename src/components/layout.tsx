@@ -21,8 +21,8 @@ const NAVIGATIONS = [
     slug: "/",
   },
   {
-    name: "About Me",
-    slug: "/about-me",
+    name: "About Us",
+    slug: "/about-us",
   },
   // {
   //   name: "Portfolio",
@@ -61,7 +61,7 @@ export const NavBar = ({
             alt=""
           />
           <p className="text-2xl text-white whitespace-nowrap font-playfair font-medium">
-            Chal <span className="text-yellow-400">Chitrakaar</span>
+            Chal <span className="text-white">Chitrakaar</span>
           </p>
         </Link>
 
@@ -248,7 +248,7 @@ export const Footer = ({
               />
               <div
                 onClick={subscribeToNewsletter}
-                className=" border border-yellow-400 w-fit items-center flex gap-2 px-4 text-yellow-400 font-medium hover:bg-yellow-400 hover:text-neutral-900 cursor-pointer duration-300 py-2"
+                className=" border border-yellow-400 w-fit items-centerashish flex gap-2 px-4 text-yellow-400 font-medium hover:bg-yellow-400 hover:text-neutral-900 cursor-pointer duration-300 py-2"
               >
                 {loading && <LoaderCircle className="animate-spin" />}
                 Subscribe

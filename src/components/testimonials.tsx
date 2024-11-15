@@ -127,12 +127,12 @@ function SingleTestimonial({
   return (
     <div className="flex flex-col gap-4 rounded-lg bg-neutral-800 p-4 text-black shadow-sm border border-neutral-700 shadow-neutral-600">
       <div className="flex gap-4">
-        <img
+        {/* <img
           className="size-12 border border-neutral-600 h-12 w-12 rounded-full object-contain"
           src={`/testimonial/${img}`}
           alt={name}
           loading="lazy"
-        />
+        /> */}
         <div className="flex flex-col">
           <div className="text-xl text-white ">{name}</div>
           <div className="text-sm text-gray-400 font-thin">{designation}</div>
