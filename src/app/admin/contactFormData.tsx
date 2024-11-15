@@ -9,7 +9,7 @@ export default function ContactUsFormDetails({ contactFormDataString }: any) {
   const contactFormData = JSON.parse(contactFormDataString);
   return (
     <div className=" flex flex-col mt-16 w-[46rem] px-4 mx-auto">
-      <h1 className=" text-3xl font-bold text-white">Contact Form Data</h1>
+      <h1 className=" text-3xl font-bold text-white mb-4">Contact Form Data</h1>
       {contactFormData.map((singleContact: any, index: number) => {
         return <SingleContactForm key={index} singleContact={singleContact} />;
       })}
