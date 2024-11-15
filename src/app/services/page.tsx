@@ -2,8 +2,9 @@
 import { Footer, NavBar } from "@/components/layout";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
-import { ReadMore } from "../page";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const Page = () => {
   const currentRoute = usePathname();
@@ -61,6 +62,21 @@ function WeddingCard() {
           <ReadMore link={"/contact-us"} />
         </div>
       </div>
+    </div>
+  );
+}
+
+function ReadMore({ link }: { link: string }) {
+  return (
+    <div className=" w-fit mx-auto -translate-x-1/2 md:translate-x-0 md:mx-0">
+      <Link
+        href={link}
+        className=" size-16 rounded-full flex items-center cursor-pointer justify-center border group border-yellow-400 "
+      >
+        <div className=" text-white translate-x-1/2 bg-neutral-900 py-1 flex gap-2 items-center group-hover:gap-4 duration-300 uppercase whitespace-nowrap">
+          Read More <ArrowRight stroke="#facc15" strokeWidth={1.5} size={20} />
+        </div>
+      </Link>
     </div>
   );
 }

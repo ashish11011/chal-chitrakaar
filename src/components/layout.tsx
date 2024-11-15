@@ -214,23 +214,36 @@ export const Footer = ({
           <div className=" flex flex-col gap-5">
             <p className=" font-semibold text-2xl text-white">Connect</p>
             <ul className=" flex flex-col gap-4 md:gap-3">
-              <li className=" text-gray-300 hover:text-yellow-400 cursor-pointer duration-200">
+              <Link
+                href={
+                  "https://www.linkedin.com/in/devanshu-vaishnav-608b81229?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                }
+                className=" text-gray-300 hover:text-yellow-400 cursor-pointer duration-200"
+              >
                 Linked in
-              </li>
-              <li className=" text-gray-300 hover:text-yellow-400 cursor-pointer duration-200">
+              </Link>
+              {/* <li className=" text-gray-300 hover:text-yellow-400 cursor-pointer duration-200">
                 Facebook
-              </li>
-              <li className=" text-gray-300 hover:text-yellow-400 cursor-pointer duration-200">
+              </li> */}
+              <Link
+                href={
+                  "https://www.instagram.com/chal.chitrakaar?igsh=NHJuMXYzZGVxM3F0"
+                }
+                className=" text-gray-300 hover:text-yellow-400 cursor-pointer duration-200"
+              >
                 Instagram
-              </li>
+              </Link>
             </ul>
           </div>
           <div className=" flex flex-col gap-5">
             <p className=" font-semibold text-2xl text-white">Connect</p>
             <ul className=" flex flex-col gap-4 md:gap-3">
-              <li className=" text-gray-300 hover:text-yellow-400 cursor-pointer duration-200">
-                chal@chitrakaar.com
-              </li>
+              <Link
+                href={"mailto:Chalchitrakaar04@gmail.com"}
+                className=" text-gray-300 hover:text-yellow-400 cursor-pointer duration-200"
+              >
+                Chalchitrakaar04@gmail.com
+              </Link>
             </ul>
           </div>
           {/* Subscribe */}

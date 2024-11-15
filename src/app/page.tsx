@@ -363,7 +363,7 @@ function AboutUs() {
   );
 }
 
-export function ReadMore({ link }: { link: string }) {
+function ReadMore({ link }: { link: string }) {
   return (
     <div className=" w-fit mx-auto -translate-x-1/2 md:translate-x-0 md:mx-0">
       <Link
