@@ -63,8 +63,8 @@ function Team() {
             height={300}
             className="rounded-lg h-96 object-cover mx-auto mb-4"
           />
-          <h3 className="text-xl font-medium text-white">Gaurav Jaat</h3>
-          <p className="text-gray-400">Cinematographer</p>
+          <h3 className="text-xl font-medium text-white">Gaurav Bairwa</h3>
+          <p className="text-gray-400">Mediacrafter</p>
         </div>
         <div className="text-center">
           <Image
@@ -75,7 +75,7 @@ function Team() {
             className="rounded-lg h-96 object-cover mx-auto mb-4"
           />
           <h3 className="text-xl font-medium text-white">Nitesh Meena</h3>
-          <p className="text-gray-400">Editor</p>
+          <p className="text-gray-400">Cinematographer</p>
         </div>
       </div>
     </section>
