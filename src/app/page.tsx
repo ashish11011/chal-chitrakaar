@@ -10,6 +10,7 @@ import {
   Circle,
   Film,
   ImagePlus,
+  Star,
   Video,
 } from "lucide-react";
 import Link from "next/link";
@@ -176,18 +177,20 @@ export default function Home() {
   ];
 
   return (
-    <div className="w-full min-h-screen">
+    <div className="w-full bg-gray-50 min-h-screen">
       <NavBar currentRoute={currentRoute} />
-      <HeroSection />
+      <NewHeroSection />
+      <ScrollPictureAnimation />
       <WhatCanIDo />
       <AboutUs />
+      <Gallary />
       <Portfolio />
       <PhasesOfWork />
-      <TestimonialSection
+      {/* <TestimonialSection
         testimonialDataCol1={testimonialsData1}
         testimonialDataCol2={testimonialsData2}
         testimonialDataCol3={testimonialsData3}
-      />
+      /> */}
       <div className="h-32"></div>
       <Footer currentRoute={currentRoute} />
     </div>
@@ -207,7 +210,7 @@ function HeroSection() {
 
   return (
     <div className="w-full relative max-w-7xl mx-auto">
-      <InitialForm />
+      {/* <InitialForm /> */}
       <div className="relative py-16 md:min-h-[28rem] justify-center h-full z-20 flex flex-col px-4 gap-5">
         <motion.p
           // className="text-3xl md:text-7xl font-playfair font-medium text-yellow-400"
@@ -262,26 +265,16 @@ function HeroSection() {
 }
 
 function WhatCanIDo() {
-  const [iconWidth, setIconWidth] = useState(60);
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setIconWidth(50);
-    }
-  });
   return (
-    <div className="w-full relative overflow-hidden max-w-7xl px-4 py-16 mx-auto">
-      <span className="z-0 hidden md:block absolute top-0 right-0 py-0 font-playfair leading-none translate-x-32 font-thin text-neutral-800 text-[20rem]">
-        Chal
-      </span>
-
+    <div className="w-full overflow-hidden max-w-7xl px-4 py-16 mx-auto">
       <div className="relative z-20 flex flex-col gap-6">
         <div className="flex flex-col gap-2 w-fit mx-auto">
-          <p className=" text-xl text-white md:text-3xl font-playfair font-medium">
+          <p className=" text-xl text-neutral-800 md:text-3xl font-playfair font-medium">
             Our Services
           </p>
           <div className="w-full h-[1px] bg-yellow-400 -translate-x-8"></div>
         </div>
-        <p className=" text-white text-5xl md:text-7xl text-center font-medium font-playfair">
+        <p className=" text-neutral-800 text-3xl md:text-7xl text-center font-medium font-playfair">
           What we can do for you
         </p>
         <div className="flex flex-col md:flex-row gap-8">
@@ -313,13 +306,18 @@ function WhatCanIDo() {
           ].map((service, index) => (
             <div
               key={index}
-              className="flex-1 shrink-0 flex flex-col gap-4 items-center"
+              className="flex-1 shrink-0 flex px-8 md:px-0 flex-col gap-4 items-center md:items-start"
             >
-              <service.Icon stroke="#eee" strokeWidth={1} size={iconWidth} />
-              <p className="text-2xl text-center font-semibold text-white">
+              <service.Icon
+                stroke="#333"
+                className=" p-2 border border-neutral-300 rounded bg-neutral-200"
+                strokeWidth={2.5}
+                size={36}
+              />
+              <p className="text-lg  font-semibold text-neutral-800">
                 {service.title}
               </p>
-              <p className="text-gray-300 -mt-3 md:mt-0 text-center">
+              <p className="text-neutral-400 text-sm -mt-3 md:mt-0 ">
                 {service.description}
               </p>
             </div>
@@ -332,8 +330,8 @@ function WhatCanIDo() {
 
 function AboutUs() {
   return (
-    <div className="mx-auto max-w-7xl  flex gap-8 md:gap-24 flex-col-reverse md:flex-row px-4 py-8 border-t md:border-none border-neutral-600 md:py-16">
-      <div className="w-full shrink-0 md:w-auto h-auto max-h-[28rem] overflow-hidden flex justify-center items-center">
+    <div className="mx-auto max-w-7xl  flex gap-8 md:gap-24 flex-col-reverse md:flex-row px-4 py-8 border-t md:border-none border-neutral-300 md:py-16">
+      <div className="w-full shrink-0 md:w-auto h-auto rounded-md max-h-[28rem] overflow-hidden flex justify-center items-center">
         <img
           className="w-auto h-full md:h-auto max-h-[28rem] object-contain"
           src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/about-us.png"
@@ -342,15 +340,15 @@ function AboutUs() {
       </div>
       <div className=" w-full flex flex-col gap-6">
         <div className="flex flex-col gap-2 mx-auto md:mx-0 w-fit">
-          <p className=" text-xl text-white md:text-3xl font-playfair font-medium">
+          <p className=" text-xl text-neutral-800 md:text-3xl font-playfair font-medium">
             About Us
           </p>
           <div className="w-full h-[1px] bg-yellow-400 -translate-x-8"></div>
         </div>
-        <p className=" text-4xl text-white md:text-7xl text-center md:text-left font-medium font-playfair">
+        <p className=" text-4xl text-neutral-800 md:text-7xl text-center md:text-left font-medium font-playfair">
           About Chal Chitrakar
         </p>
-        <p className=" max-w-xl text-center text-gray-300 self-end">
+        <p className=" max-w-xl text-center text-neutral-500 self-end">
           At Chal Chitrakaar, we bring your creative visions to life with expert
           photography, videography, and editing services, crafting impactful
           visuals tailored to your needs. From personal projects to corporate
@@ -370,7 +368,7 @@ function ReadMore({ link }: { link: string }) {
         href={link}
         className=" size-16 rounded-full flex items-center cursor-pointer justify-center border group border-yellow-400 "
       >
-        <div className=" text-white translate-x-1/2 bg-neutral-900 py-1 flex gap-2 items-center group-hover:gap-4 duration-300 uppercase whitespace-nowrap">
+        <div className=" text-neutral-800 bg-gray-50 translate-x-1/2  py-1 flex gap-2 items-center group-hover:gap-4 duration-300 uppercase whitespace-nowrap">
           Read More <ArrowRight stroke="#facc15" strokeWidth={1.5} size={20} />
         </div>
       </Link>
@@ -391,29 +389,32 @@ function WeddingCard() {
   return (
     <div className=" px-4 md:px-0 border-y max-w-7xl mx-auto flex gap-6 md:h-[34rem] flex-col md:flex-row">
       <div className=" w-full h-full flex flex-col">
-        <p className=" text-white text-5xl font-medium font-playfair py-7 md:py-12">
+        <p className=" text-neutral-800 text-5xl font-medium font-playfair py-7 md:py-12">
           Wedding
         </p>
-        <img
-          className=" h-full w-full object-cover"
-          src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding-1.jpg"
-          alt=""
-        />
+        <div className=" h-full w-full overflow-hidden flex justify-center items-end">
+          <img
+            className=" w-full h-full object-cover "
+            src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6656-min.jpg"
+            // src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/test/IMG_6576.JPG"
+            alt=""
+          />
+        </div>
       </div>
-      <div className=" hidden md:block w-full h-full">
+      <div className=" hidden md:flex w-full h-full justify-end items-end overflow-hidden ">
         <img
           className=" w-full h-full object-cover"
-          src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding-2.jpg"
+          src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6576-min.jpg"
           alt=""
         />
       </div>
       <div className=" w-full h-full flex flex-col gap-4">
         <img
           className=" h-full"
-          src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding-3.jpg"
+          src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_5797-min.jpg"
           alt=""
         />
-        <div className=" text-white flex flex-col gap-6 py-6 ">
+        <div className=" text-neutral-800 flex flex-col gap-6 py-6 ">
           <p>
             At Chal Chitrakaar, we capture your wedding's heartfelt moments with
             artistic photography, cinematic videography, and expert editing,
@@ -435,7 +436,7 @@ function Family() {
           src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/family-1.jpg"
           alt=""
         />
-        <div className=" text-white flex flex-col gap-6 py-6 ">
+        <div className=" text-neutral-800 flex flex-col gap-6 py-6 ">
           <p>
             At Chal Chitrakaar, we capture genuine family moments with warm,
             candid photography and videography, preserving the joy and essence
@@ -453,8 +454,8 @@ function Family() {
       </div>
 
       <div className=" w-full h-full flex flex-col md:flex-col-reverse">
-        <p className=" text-white text-5xl font-medium font-playfair py-7 md:py-12">
-          Famliy
+        <p className=" text-neutral-800 text-5xl font-medium font-playfair py-7 md:py-12">
+          Corporate
         </p>
         <img
           className=" h-full w-full object-cover"
@@ -499,32 +500,32 @@ function PhasesOfWork() {
     <div className=" mt-20 md:mt-32 mx-auto max-w-7xl flex flex-col gap-8">
       <div className=" pl-0 md:pl-40 flex gap-4 flex-col">
         <div className="flex flex-col gap-2 mx-auto md:mx-0 w-fit">
-          <p className=" text-xl font-medium text-white">Process</p>
+          <p className=" text-xl font-medium text-neutral-800">Process</p>
           <div className="w-full h-[1px] bg-yellow-400 -translate-x-8"></div>
         </div>
-        <p className=" text-white text-4xl md:text-6xl text-center md:text-left font-medium font-playfair">
+        <p className=" text-neutral-800 text-4xl md:text-6xl text-center md:text-left font-medium font-playfair">
           Phases of Work
         </p>
       </div>
-      <div className=" flex flex-col md:flex-row px-4 md:px-0 gap-12">
+      <div className=" flex flex-col md:flex-row px-4 md:px-0 gap-6">
         <img
-          className=" max-w-md w-full h-full max-h-96 md:max-h-none object-cover"
+          className=" max-w-lg w-full rounded-xl h-full max-h-96 md:max-h-none object-cover"
           src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/man-taking-selfie.jpg"
           alt=""
         />
-        <div className=" mx-auto flex w-full flex-col max-w-2xl gap-2">
+        <div className=" mx-auto flex w-full flex-col max-w-2xl gap-1">
           {PhasesOfWork.map((item, index) => {
             return (
               <div key={index} className=" flex flex-col ">
-                <div className=" text-white flex items-center gap-2">
+                <div className=" text-neutral-800 flex items-center gap-2">
                   <p>0{index + 1}</p>
                   <div className=" w-full h-[1px] bg-yellow-400"></div>
                 </div>
-                <div className=" md:pl-8 py-3 flex flex-col gap-2 md:gap-3">
-                  <p className=" text-white text-3xl md:text-4xl font-playfair font-medium">
+                <div className=" md:pl-8 py-3 flex flex-col gap-2 md:gap-2">
+                  <p className=" text-neutral-800 text-3xl md:text-4xl font-playfair font-medium">
                     {item.title}
                   </p>
-                  <p className=" text-gray-200 font-thin md:text-base">
+                  <p className=" text-neutral-600 font-thin md:text-base">
                     {item.description}
                   </p>
                 </div>
@@ -537,27 +538,120 @@ function PhasesOfWork() {
   );
 }
 
-// function HeroSection() {
-//   return (
-//     <div className="w-full relative max-w-7xl mx-auto">
-//       <div className=" z-20 flex flex-col px-4 gap-6">
-//         <p className=" text-3xl md:text-7xl font-playfair font-medium text-yellow-400">
-//           Capturing Moments
-//         </p>
-//         <div className=" flex items-center gap-6">
-//           <div className=" w-28 h-[1px] bg-yellow-400"></div>
-//           <p className=" text-3xl md:text-7xl font-playfair font-medium">
-//             Creating Memories
-//           </p>
-//         </div>
-//       </div>
-//       <div className=" h-96 md:hidden"></div>
-//       <div className=" absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:right-0 bottom-0 md:top-0 w-11/12 md:w-1/2 ">
-//         <img
-//           src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/hero.jpg"
-//           alt=""
-//         />
-//       </div>
-//     </div>
-//   );
-// }
+function NewHeroSection() {
+  return (
+    <div className=" bg-gray-50 min-h-96 flex flex-col gap-6 justify-center items-center max-w-7xl py-4 px-4 mx-auto ">
+      <div className=" border bg-gradient-to-r cursor-pointer rounded-3xl px-2.5 border-gray-400 py-0.5 text-gray-600 text-xs font-semibold from-teal-100 to-sky-100 ">
+        View Gallary
+      </div>
+      <div className=" text-center text-5xl md:text-6xl font-medium max-w-3xl mx-auto">
+        <span className=" italic font-playfair ">Learn </span>
+        <span className=" font-bold">the correct </span>
+        <span>way to use your iPhone camera</span>
+      </div>
+      <p className=" text-gray-600 text-center max-w-2xl mx-auto">
+        In this step-by-step course, learn the exact settings and techniques to
+        capture amazing photos with your iPhone. No experience needed — just
+        follow the steps and see the difference!
+      </p>
+      <p className=" cursor-pointer border rounded hover:-translate-y-1 hover:bg-blue-600 duration-200 bg-blue-700 px-4 py-2 text-white font-medium">
+        Get Pricing Quote
+      </p>
+      <div className=" mt-4 border rounded -rotate-3  bg-gradient-to-r flex gap-3 justify-center items-center from-purple-100 px-3  font-medium text-center text-gray-700 py-1.5 via-blue-100 to-yellow-100">
+        <Star fill="black" size={14} />
+        Lemited time offer hire at less price
+        <Star fill="black" size={14} />
+      </div>
+    </div>
+  );
+}
+
+function ScrollPictureAnimation() {
+  return (
+    <div className="relative flex gap-4 overflow-x-hidden">
+      <div className="py-12 animate-marquee3 flex gap-4 whitespace-nowrap">
+        <ScrollPictureAnimationImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_5797-min.jpg" />
+        <ScrollPictureAnimationImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6576-min.jpg" />
+        <ScrollPictureAnimationImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6656-min.jpg" />
+        <ScrollPictureAnimationImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_5797-min.jpg" />
+        <ScrollPictureAnimationImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6576-min.jpg" />
+        <ScrollPictureAnimationImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6656-min.jpg" />
+      </div>
+
+      <div className=" mx-3 absolute top-0 py-12 flex gap-4 animate-marquee4 whitespace-nowrap">
+        <ScrollPictureAnimationImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_5797-min.jpg" />
+        <ScrollPictureAnimationImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6576-min.jpg" />
+        <ScrollPictureAnimationImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6656-min.jpg" />
+        <ScrollPictureAnimationImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_5797-min.jpg" />
+        <ScrollPictureAnimationImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6576-min.jpg" />
+        <ScrollPictureAnimationImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6656-min.jpg" />
+      </div>
+    </div>
+  );
+}
+
+function ScrollPictureAnimationImage({ img }: { img: string }) {
+  return (
+    <div className=" w-56 overflow-hidden rounded h-72">
+      <img className=" w-full h-full object-cover" src={img} alt="" />
+    </div>
+  );
+}
+
+function Gallary() {
+  const [openedCategory, setOpenedCategory] = useState<string>("all");
+  return (
+    <div className=" max-w-7xl my-12 mx-auto px-4 flex flex-col gap-4 ">
+      <div className=" flex py-2 gap-2 md:gap-5 items-center justify-center">
+        <div
+          onClick={() => setOpenedCategory("all")}
+          className={` px-3 py-1.5 rounded-3xl cursor-pointer select-none hover:bg-gray-100 text-neutral-800 font-medium ${
+            openedCategory === "all" && "border bg-gray-100 border-neutral-300"
+          } `}
+        >
+          All
+        </div>
+        <div
+          onClick={() => setOpenedCategory("wedding")}
+          className={` px-3 py-1.5 rounded-3xl cursor-pointer select-none hover:bg-gray-100 text-neutral-800 font-medium ${
+            openedCategory === "wedding" &&
+            "border bg-gray-100 border-neutral-300"
+          } `}
+        >
+          Wedding
+        </div>
+        <div
+          onClick={() => setOpenedCategory("corporate")}
+          className={` px-3 py-1.5 rounded-3xl cursor-pointer select-none hover:bg-gray-100 text-neutral-800 font-medium ${
+            openedCategory === "corporate" &&
+            "border bg-gray-100 border-neutral-300"
+          } `}
+        >
+          Corporate
+        </div>
+      </div>
+      <div className=" grid grid-cols-12 gap-2 md:gap-2">
+        <GallaryImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_5797-min.jpg" />
+        <GallaryImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6576-min.jpg" />
+        <GallaryImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6656-min.jpg" />
+        <GallaryImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_5797-min.jpg" />
+        <GallaryImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6656-min.jpg" />
+        <GallaryImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_5797-min.jpg" />
+        <GallaryImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_5797-min.jpg" />
+        <GallaryImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6576-min.jpg" />
+      </div>
+    </div>
+  );
+}
+
+function GallaryImage({ img }: { img: string }) {
+  return (
+    <div className=" w-full col-span-6 md:col-span-3 overflow-hidden h-64">
+      <img
+        className=" w-full h-full rounded md:rounded-none object-cover"
+        src={img}
+        alt=""
+      />
+    </div>
+  );
+}

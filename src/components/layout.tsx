@@ -49,30 +49,30 @@ export const NavBar = ({
 }) => {
   const [mobNavOpen, setMobNavOpen] = useState(false);
   return (
-    <div className="sticky top-0 z-50 w-full border-b border-neutral-700 bg-neutral-900">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-8 px-4 py-6 md:px-8 md:py-6">
+    <div className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-gray-100">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-8 px-4 py-4 md:px-8 md:py-2">
         <Link
           href={"/"}
           className=" max-h-8 w-auto flex items-center gap-3 min-w-14 md:max-h-none"
         >
           <img
             className="h-12 w-full object-contain"
-            src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/logo++white.PNG"
+            src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/logo+dark.PNG"
             alt=""
           />
-          <p className="text-2xl text-white whitespace-nowrap font-playfair font-medium">
-            Chal <span className="text-white">Chitrakaar</span>
+          <p className="text-2xl text-neutral-800 whitespace-nowrap font-playfair font-medium">
+            Chal <span className="text-neutral-800">Chitrakaar</span>
           </p>
         </Link>
 
         <div className="hidden md:block">
-          <ul className="flex items-center overflow-hidden border-neutral-700 font-medium text-gray-200">
+          <ul className="flex items-center overflow-hidden border-neutral-700 font-medium text-neutral-800">
             {NAVIGATIONS.map((item) => {
               return (
                 <Link
                   key={item.slug}
                   href={item.slug}
-                  className={`cursor-pointer px-4 py-1.5 text-sm duration-300 hover:bg-neutral-800 md:px-5 md:text-base ${
+                  className={`cursor-pointer px-4 py-1.5 text-sm duration-300 hover:bg-neutral-200 rounded-t  md:px-5 md:text-base ${
                     currentRoute === item.slug && "border-b border-yellow-400"
                   } `}
                 >
@@ -119,14 +119,14 @@ export const NavBar = ({
         </div>
 
         {mobNavOpen && (
-          <div className="absolute left-0 top-20 flex h-screen w-full items-center justify-center bg-neutral-950 text-white">
+          <div className="absolute left-0 top-16 flex h-screen w-full items-center justify-center bg-gray-100 text-neutral-800">
             <div className="z-40 flex -translate-y-24 flex-col items-center justify-center">
               {NAVIGATIONS.map((item) => {
                 return (
                   <Link
                     key={item.slug}
                     href={item.slug}
-                    className="w-full py-3 text-center text-xl text-white hover:bg-neutral-800"
+                    className="w-full py-3 text-center text-xl text-neutral-800 "
                     onClick={() => setMobNavOpen(false)}
                   >
                     {item.name}
@@ -172,7 +172,7 @@ export const Footer = ({
     }
   }
   return (
-    <div className="w-full  pt-12 px-6 md:px-16 pb-4 bg-neutral-800">
+    <div className="w-full  pt-12 px-6 md:px-16 pb-4 bg-gray-100">
       <div className=" max-w-7xl flex flex-col gap-4 mx-auto w-full">
         <div className="hidden md:flex flex-col-reverse md:flex-row gap-6 justify-between">
           <div className=" flex gap-2 md:gap-6 flex-col md:flex-row">
@@ -181,7 +181,7 @@ export const Footer = ({
                 <Link
                   key={item.slug}
                   href={item.slug}
-                  className={`cursor-pointer w-fit py-1.5 text-white duration-300 hover:bg-neutral-700 md:px-5 md:text-base ${
+                  className={`cursor-pointer w-fit py-1.5 text-neutral-800 duration-300 hover:bg-gray-200 rounded-t font-medium md:px-5 md:text-base ${
                     currentRoute === item.slug && "border-b border-yellow-400"
                   } `}
                 >
@@ -191,64 +191,25 @@ export const Footer = ({
             })}
           </div>
           <Link href={"/"} className="">
-            <p className="text-2xl text-white font-playfair whitespace-nowrap font-medium">
-              Chal <span className="text-yellow-400">Chitrakaar</span>
+            <p className="text-2xl text-neutral-800 font-playfair whitespace-nowrap font-medium">
+              Chal <span className="">Chitrakaar</span>
             </p>
           </Link>
         </div>
         <div className="mt-12 flex flex-col md:flex-row gap-6 justify-between">
-          <div className=" flex flex-col gap-5">
-            <p className=" font-semibold text-2xl text-white">Services</p>
-            <ul className=" flex flex-col gap-4 md:gap-3">
-              <li className=" text-gray-300 hover:text-yellow-400 cursor-pointer duration-200">
-                Personal
-              </li>
-              <li className=" text-gray-300 hover:text-yellow-400 cursor-pointer duration-200">
-                Wedding
-              </li>
-              <li className=" text-gray-300 hover:text-yellow-400 cursor-pointer duration-200">
-                Travel
-              </li>
-            </ul>
-          </div>
-          <div className=" flex flex-col gap-5">
-            <p className=" font-semibold text-2xl text-white">Connect</p>
-            <ul className=" flex flex-col gap-4 md:gap-3">
-              <Link
-                href={
-                  "https://www.linkedin.com/in/devanshu-vaishnav-608b81229?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-                }
-                className=" text-gray-300 hover:text-yellow-400 cursor-pointer duration-200"
-              >
-                Linked in
-              </Link>
-              {/* <li className=" text-gray-300 hover:text-yellow-400 cursor-pointer duration-200">
-                Facebook
-              </li> */}
-              <Link
-                href={
-                  "https://www.instagram.com/chal.chitrakaar?igsh=NHJuMXYzZGVxM3F0"
-                }
-                className=" text-gray-300 hover:text-yellow-400 cursor-pointer duration-200"
-              >
-                Instagram
-              </Link>
-            </ul>
-          </div>
-          <div className=" flex flex-col gap-5">
-            <p className=" font-semibold text-2xl text-white">Connect</p>
-            <ul className=" flex flex-col gap-4 md:gap-3">
-              <Link
-                href={"mailto:Chalchitrakaar04@gmail.com"}
-                className=" text-gray-300 hover:text-yellow-400 cursor-pointer duration-200"
-              >
-                Chalchitrakaar04@gmail.com
-              </Link>
-            </ul>
-          </div>
+          {FooterData.map((footerSingleData: any, index: number) => {
+            return (
+              <FooterMegaLinks
+                key={index}
+                heading={footerSingleData.heading}
+                links={footerSingleData.links}
+              />
+            );
+          })}
+
           {/* Subscribe */}
           <div className=" w-full max-w-xl flex flex-col gap-4 ">
-            <p className=" text-white text-2xl capitalize md:text-4xl font-playfair font-semibold">
+            <p className=" text-neutral-800 text-2xl capitalize md:text-4xl font-playfair font-semibold">
               Sign Up to my newsletter
             </p>
             <form className=" border-b border-yellow-400 py-3 flex gap-4">
@@ -261,7 +222,7 @@ export const Footer = ({
               />
               <div
                 onClick={subscribeToNewsletter}
-                className=" border border-yellow-400 w-fit items-centerashish flex gap-2 px-4 text-yellow-400 font-medium hover:bg-yellow-400 hover:text-neutral-900 cursor-pointer duration-300 py-2"
+                className=" border border-yellow-400 w-fit items-centerashish flex gap-2 px-4 text-gray-600 font-medium hover:bg-yellow-400 hover:text-neutral-900 cursor-pointer duration-300 py-2"
               >
                 {loading && <LoaderCircle className="animate-spin" />}
                 Subscribe
@@ -272,16 +233,33 @@ export const Footer = ({
             )}
           </div>
         </div>
-        {/* <div className="mt-12 md:mt-12 py-2 border-t border-neutral-600">
-          <p className=" text-center text-gray-300 text-sm">
-            @ copyright chal chitrakaar{" "}
-          </p>
-        </div> */}
+
         <AshishFooter />
       </div>
     </div>
   );
 };
+
+function FooterMegaLinks({ heading, links }: any) {
+  return (
+    <div className=" flex flex-col gap-5">
+      <p className=" font-medium text-2xl text-neutral-800">{heading}</p>
+      <ul className=" flex flex-col gap-4 md:gap-3">
+        {links.map((link: any, index: number) => {
+          return (
+            <Link
+              key={index}
+              href={link.link}
+              className=" text-gray-600 hover:text-gray-800 cursor-pointer duration-200"
+            >
+              {link.name}
+            </Link>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
 
 function AshishFooter() {
   const [isHovered, setIsHovered] = useState(false);
@@ -290,12 +268,12 @@ function AshishFooter() {
     router.push("https://portfolio-iota-olive-12.vercel.app/");
   }
   return (
-    <div className="py-2 w-full mx-auto border-t border-neutral-600 ">
-      <div className="text-center text-gray-300 text-sm relative">
+    <div className="py-2 w-full mx-auto border-t border-neutral-300 ">
+      <div className="text-center text-gray-600 text-sm relative">
         Developed By -{" "}
         <span
           onClick={handleNameClick}
-          className="p-1 cursor-pointer rounded duration-300 hover:bg-neutral-700"
+          className="p-1 cursor-pointer rounded duration-300 hover:bg-neutral-200"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -365,3 +343,45 @@ function AshishFooter() {
     </div>
   );
 }
+
+const FooterData = [
+  {
+    heading: "Services",
+    links: [
+      {
+        name: "Personal",
+        link: "",
+      },
+      {
+        name: "Wedding",
+        link: "",
+      },
+      {
+        name: "Travel",
+        link: "",
+      },
+    ],
+  },
+  {
+    heading: "Connect",
+    links: [
+      {
+        name: "Linked In",
+        link: "https://www.linkedin.com/in/devanshu-vaishnav-608b81229",
+      },
+      {
+        name: "Instagram",
+        link: "https://www.instagram.com/chal.chitrakaar",
+      },
+    ],
+  },
+  {
+    heading: "Connect",
+    links: [
+      {
+        name: "Chalchitrakaar04@gmail.com",
+        link: "mailto:Chalchitrakaar04@gmail.com",
+      },
+    ],
+  },
+];

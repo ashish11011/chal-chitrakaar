@@ -21,9 +21,9 @@ export default Page;
 
 function ContactUsHeader() {
   return (
-    <div className=" h-[24rem] md:h-[36em] w-full bg-neutral-900  bg-grid-white/[0.05]  relative flex items-center justify-center">
+    <div className=" h-[24rem] md:h-[24em] w-full   bg-grid-black/[0.05]  relative flex items-center justify-center">
       {/* Radial gradient for the container to give a faded look */}
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-neutral-900 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-gray-50 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       <p className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8">
         Conatct Us
       </p>
@@ -81,16 +81,16 @@ function ContactForm() {
     setLoading(false);
   }
   return (
-    <form className=" max-w-5xl my-24 mx-auto px-6 flex flex-col gap-6">
+    <form className=" max-w-3xl my-24 mx-auto px-6 flex flex-col gap-6">
       <div className=" flex flex-col gap-3">
-        <Label className="pl-1 text-white">Name</Label>
+        <Label className="pl-1  text-neutral-800">Name</Label>
         <input
           onChange={(e) => handleInputChange(e)}
           type="text"
           name="name"
           value={formData.name}
           placeholder="John Doe"
-          className="py-2 px-4 rounded border border-neutral-600  bg-neutral-800 dark:bg-gray-800 text-gray-200 focus:outline-none"
+          className="py-2 px-4 rounded border border-neutral-300  bg-gray-100 text-neutral-800 focus:outline-none"
         />
       </div>
       <div className=" flex flex-col gap-3">
@@ -101,7 +101,7 @@ function ContactForm() {
           value={formData.email}
           onChange={(e) => handleInputChange(e)}
           placeholder="mail@gmail.com"
-          className="py-2 px-4 rounded border border-neutral-600  bg-neutral-800 dark:bg-gray-800 text-gray-200 focus:outline-none"
+          className="py-2 px-4 rounded border border-neutral-300  bg-gray-100 text-neutral-800 focus:outline-none"
         />
       </div>
       <div className=" flex flex-col gap-3">
@@ -112,7 +112,7 @@ function ContactForm() {
           value={formData.number}
           onChange={(e) => handleInputChange(e)}
           placeholder="+91 9999888877"
-          className="py-2 px-4 rounded border border-neutral-600  bg-neutral-800 dark:bg-gray-800 text-gray-200 focus:outline-none"
+          className="py-2 px-4 rounded border border-neutral-300  bg-gray-100 text-neutral-800 focus:outline-none"
         />
       </div>
       <div className=" flex flex-col gap-3">
@@ -123,7 +123,7 @@ function ContactForm() {
           value={formData.message}
           onChange={(e) => handleInputChange(e)}
           rows={5}
-          className="py-2 px-4 rounded border border-neutral-600  bg-neutral-800 dark:bg-gray-800 text-gray-200 focus:outline-none"
+          className="py-2 px-4 rounded border border-neutral-300  bg-gray-100 text-neutral-800 focus:outline-none"
         ></textarea>
       </div>
       {responseMessage && <p className="text-white">{responseMessage}</p>}

@@ -28,7 +28,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
       </div>
 
       {/* Testimonial Section */}
-      <div className="relative mx-auto mt-12 grid h-[90vh] max-w-7xl grid-cols-12 gap-8 overflow-y-hidden bg-neutral-900 px-4 lg:px-16">
+      <div className="relative mx-auto mt-12 grid h-[90vh] max-w-7xl grid-cols-12 gap-8 overflow-y-hidden  px-4 lg:px-16">
         <div className="group relative col-span-12 mx-auto flex cursor-pointer flex-col gap-4 sm:col-span-6 lg:col-span-4">
           <div className="flex h-fit w-full animate-marquee flex-col gap-4 group-hover:[animation-play-state:paused]">
             {testimonialDataCol1.map((data, index) => (
@@ -104,8 +104,8 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
           </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-32 bg-gradient-to-b from-neutral-900"></div>
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-t from-neutral-900"></div>
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-32 bg-gradient-to-b from-gray-50"></div>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-t from-gray-50"></div>
       </div>
     </div>
   );

@@ -84,7 +84,7 @@ export function InitialForm() {
               name="name"
               onChange={(e) => handleInputChange(e)}
               id="name"
-              placeholder="Pedro Duarte"
+              placeholder="Rahul Kumar"
               className="col-span-3 border-neutral-700 text-gray-300"
             />
           </div>

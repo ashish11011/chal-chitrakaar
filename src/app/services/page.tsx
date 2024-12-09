@@ -12,7 +12,7 @@ const Page = () => {
     <div className=" flex min-h-screen justify-between  flex-col gap-4">
       <NavBar currentRoute={currentRoute} />
       <div className=" flex flex-col gap-8 ">
-        <p className=" text-5xl text-center text-white font-medium py-8 mb-8">
+        <p className=" text-5xl text-center text-neutral-800 font-medium py-8 mb-8">
           {" "}
           Our Services
         </p>
@@ -31,7 +31,7 @@ function WeddingCard() {
   return (
     <div className=" px-4 md:px-0 border-y border-gray-500 max-w-7xl mx-auto flex gap-6 md:h-[34rem] flex-col md:flex-row">
       <div className=" w-full h-full flex flex-col">
-        <p className=" text-white text-4xl font-medium font-playfair py-7 md:py-12">
+        <p className=" text-neutral-800 text-4xl font-medium font-playfair py-7 md:py-12">
           Wedding
         </p>
         <img
@@ -53,7 +53,7 @@ function WeddingCard() {
           src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding-3.jpg"
           alt=""
         />
-        <div className=" text-white flex flex-col gap-6 py-6 ">
+        <div className=" text-neutral-800 flex flex-col gap-6 py-6 ">
           <p>
             At Chal Chitrakaar, we capture your wedding's heartfelt moments with
             artistic photography, cinematic videography, and expert editing,
@@ -73,7 +73,7 @@ function ReadMore({ link }: { link: string }) {
         href={link}
         className=" size-16 rounded-full flex items-center cursor-pointer justify-center border group border-yellow-400 "
       >
-        <div className=" text-white translate-x-1/2 bg-neutral-900 py-1 flex gap-2 items-center group-hover:gap-4 duration-300 uppercase whitespace-nowrap">
+        <div className=" text-gray-700 translate-x-1/2 bg-gray-50 py-1 flex gap-2 items-center group-hover:gap-4 duration-300 uppercase whitespace-nowrap">
           Read More <ArrowRight stroke="#facc15" strokeWidth={1.5} size={20} />
         </div>
       </Link>
@@ -90,7 +90,7 @@ function Family() {
           src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/family-1.jpg"
           alt=""
         />
-        <div className=" text-white flex flex-col gap-6 py-6 ">
+        <div className=" text-neutral-800 flex flex-col gap-6 py-6 ">
           <p>
             At Chal Chitrakaar, we capture genuine family moments with warm,
             candid photography and videography, preserving the joy and essence
@@ -108,7 +108,7 @@ function Family() {
       </div>
 
       <div className=" w-full h-full flex flex-col md:flex-col-reverse">
-        <p className=" text-white text-5xl font-medium font-playfair py-7 md:py-12">
+        <p className=" text-neutral-800 text-5xl font-medium font-playfair py-7 md:py-12">
           Famliy
         </p>
         <img
@@ -119,10 +119,6 @@ function Family() {
       </div>
     </div>
   );
-}
-
-function GallaryService() {
-  return <div className="">asdf</div>;
 }
 
 const images = [
