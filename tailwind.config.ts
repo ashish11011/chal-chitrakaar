@@ -1,3 +1,4 @@
+import { script } from "framer-motion/client";
 import type { Config } from "tailwindcss";
 const svgToDataUri = require("mini-svg-data-uri");
 
@@ -17,6 +18,7 @@ export default {
     extend: {
       fontFamily: {
         playfair: ["Playfair Display", "serif"],
+        dancingScript: ["Dancing Script", "cursive"],
       },
       colors: {
         background: "hsl(var(--background))",

@@ -1,8 +1,11 @@
 "use client";
+import GradientButton from "@/components/gradientButton";
+import { ImageWithBottomTitle } from "@/components/imageWithBottomTitle";
 import { Footer, NavBar } from "@/components/layout";
 import TestimonialSection from "@/components/testimonials";
 import { InitialForm } from "@/components/websiteLoadForm";
-import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "framer-motion";
 
 import {
   ArrowRight,
@@ -13,6 +16,7 @@ import {
   Star,
   Video,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -184,7 +188,7 @@ export default function Home() {
       <WhatCanIDo />
       <AboutUs />
       <Gallary />
-      <Portfolio />
+      {/* <Portfolio /> */}
       <PhasesOfWork />
       {/* <TestimonialSection
         testimonialDataCol1={testimonialsData1}
@@ -197,105 +201,36 @@ export default function Home() {
   );
 }
 
-function HeroSection() {
-  // Animation variants
-  const textVariant = {
-    hidden: { x: -100, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
-
-  return (
-    <div className="w-full relative max-w-7xl mx-auto">
-      {/* <InitialForm /> */}
-      <div className="relative py-16 md:min-h-[28rem] justify-center h-full z-20 flex flex-col px-4 gap-5">
-        <motion.p
-          // className="text-3xl md:text-7xl font-playfair font-medium text-yellow-400"
-          className="text-3xl md:text-7xl font-playfair font-medium text-teal-600"
-          variants={textVariant}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          Capturing Moments
-        </motion.p>
-
-        <motion.div
-          className="flex items-center gap-6"
-          variants={textVariant}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <div className="w-28 h-[1px] bg-gray-400"></div>
-          <p className="text-3xl text-right md:text-left text-white whitespace-nowrap md:text-7xl font-playfair font-medium">
-            Creating Memories
-          </p>
-        </motion.div>
-
-        <p className="text-center text-white md:text-left max-w-xl">
-          At Chal Chitrakaar, we bring stories to life through captivating
-          visual services, offering a behind-the-scenes glimpse into our
-          creative process to inspire creators, brands, and event organizers
-          alike.
-        </p>
-
-        <Link
-          href={"/services"}
-          // className="border border-yellow-400 w-fit px-4 text-yellow-400 font-medium hover:bg-yellow-400 hover:text-neutral-900 cursor-pointer duration-300 py-2"
-          className="border  w-fit px-4 border-teal-300 hover:border-teal-600 text-white font-medium   cursor-pointer duration-300 py-2"
-        >
-          Meet Our Models
-        </Link>
-      </div>
-
-      <div className="h-56 md:hidden"></div>
-
-      <div className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:right-0 bottom-0 md:top-0 w-11/12 md:w-1/2 z-10">
-        <img
-          src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/hero.jpg"
-          alt="hero"
-        />
-      </div>
-    </div>
-  );
-}
-
 function WhatCanIDo() {
   return (
     <div className="w-full overflow-hidden max-w-7xl px-4 py-16 mx-auto">
-      <div className="relative z-20 flex flex-col gap-6">
-        <div className="flex flex-col gap-2 w-fit mx-auto">
-          <p className=" text-xl text-neutral-800 md:text-3xl font-playfair font-medium">
-            Our Services
-          </p>
-          <div className="w-full h-[1px] bg-yellow-400 -translate-x-8"></div>
-        </div>
-        <p className=" text-neutral-800 text-3xl md:text-7xl text-center font-medium font-playfair">
+      <div className="relative z-20 flex flex-col gap-4 md:gap-6">
+        <GradientButton>Our Services</GradientButton>
+        <p
+          className=" text-neutral-800 italic
+         text-3xl md:text-7xl text-center mb-4 md:mb-6 font-medium font-playfair"
+        >
           What we can do for you
         </p>
-        <div className="flex flex-col md:flex-row gap-8">
+        <div className="flex flex-col md:flex-row">
           {[
             {
               Icon: Camera,
               title: "Photo Shoot",
               description:
-                "Our Photo Shoot service captures moments with style and authenticity, delivering professional, story-driven photos for portraits, events, and more.",
+                "Our Photo Shoot service captures moments with style and authenticity, delivering professional, story-driven .",
             },
             {
               Icon: Video,
               title: "Video Shoot/Cinematography",
               description:
-                "Our Video Shoot/Cinematography service transforms your vision into high-quality, cinematic stories that capture the essence of your moments and ideas.",
+                "Our Video Shoot/Cinematography service transforms your vision into high-quality, cinematic stories that capture .",
             },
             {
               Icon: ImagePlus,
               title: "Photo Editing",
               description:
-                "Our Photo Editing service enhances your images with expert retouching, delivering vibrant, professional photos true to your vision.",
+                "Our Photo Editing service enhances your images with expert retouching, delivering vibrant, professional photos .",
             },
             {
               Icon: Film,
@@ -306,7 +241,10 @@ function WhatCanIDo() {
           ].map((service, index) => (
             <div
               key={index}
-              className="flex-1 shrink-0 flex px-8 md:px-0 flex-col gap-4 items-center md:items-start"
+              className={cn(
+                "flex-1 shrink-0 flex px-6 flex-col gap-3 py-4 items-center ",
+                index != 3 && " md:border-r"
+              )}
             >
               <service.Icon
                 stroke="#333"
@@ -317,7 +255,7 @@ function WhatCanIDo() {
               <p className="text-lg  font-semibold text-neutral-800">
                 {service.title}
               </p>
-              <p className="text-neutral-400 text-sm -mt-3 md:mt-0 ">
+              <p className="text-neutral-400 text-center text-sm ">
                 {service.description}
               </p>
             </div>
@@ -330,38 +268,50 @@ function WhatCanIDo() {
 
 function AboutUs() {
   return (
-    <div className="mx-auto max-w-7xl  flex gap-8 md:gap-24 flex-col-reverse md:flex-row px-4 py-8 border-t md:border-none border-neutral-300 md:py-16">
-      <div className="w-full shrink-0 md:w-auto h-auto rounded-md max-h-[28rem] overflow-hidden flex justify-center items-center">
-        <img
-          className="w-auto h-full md:h-auto max-h-[28rem] object-contain"
-          src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/about-us.png"
-          alt="about-us"
+    <div className=" max-w-6xl px-6 mx-auto mt-8 flex flex-col gap-8 ">
+      <GradientButton>About Us</GradientButton>
+      <div className=" flex-col md:flex-row flex gap-12 md:gap-16 items-center">
+        <ImageWithBottomTitle
+          img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/about-us.png"
+          title="About Chal Chitrakaar"
         />
-      </div>
-      <div className=" w-full flex flex-col gap-6">
-        <div className="flex flex-col gap-2 mx-auto md:mx-0 w-fit">
-          <p className=" text-xl text-neutral-800 md:text-3xl font-playfair font-medium">
-            About Us
+        <div className=" text-center flex  flex-col gap-8 md:gap-12">
+          <p className="text-gray-600">
+            At Chal Chitrakaar, we bring your creative visions to life with
+            expert photography, videography, and editing services, crafting
+            impactful visuals tailored to your needs. From personal projects to
+            corporate shoots and events, we deliver high-quality results with
+            creativity, expertise, and attention to detail.
           </p>
-          <div className="w-full h-[1px] bg-yellow-400 -translate-x-8"></div>
+          <div className=" flex flex-wrap">
+            <TitleOvarlapNumberCard title="Years of Experience" number="3" />
+            <TitleOvarlapNumberCard title="Repeated clients" number="150" />
+            <TitleOvarlapNumberCard title="Completed Projects" number="470" />
+            <TitleOvarlapNumberCard title="happy clients" number="350" />
+          </div>
         </div>
-        <p className=" text-4xl text-neutral-800 md:text-7xl text-center md:text-left font-medium font-playfair">
-          About Chal Chitrakar
-        </p>
-        <p className=" max-w-xl text-center text-neutral-500 self-end">
-          At Chal Chitrakaar, we bring your creative visions to life with expert
-          photography, videography, and editing services, crafting impactful
-          visuals tailored to your needs. From personal projects to corporate
-          shoots and events, we deliver high-quality results with creativity,
-          expertise, and attention to detail.
-        </p>
-        <ReadMore link={"/about-me"} />
       </div>
     </div>
   );
 }
 
-function ReadMore({ link }: { link: string }) {
+function TitleOvarlapNumberCard({ title, number, className }: any) {
+  return (
+    <div
+      className={cn(
+        "flex w-full md:w-1/2  flex-col mb-4 items-center gap-0",
+        className
+      )}
+    >
+      <p className="text-xl uppercase font-medium text-center text-gray-700">
+        {title}
+      </p>
+      <p className=" font-extrabold text-4xl  text-gray-200">{number}+</p>
+    </div>
+  );
+}
+
+function ReadMore({ link }: any) {
   return (
     <div className=" w-fit mx-auto -translate-x-1/2 md:translate-x-0 md:mx-0">
       <Link
@@ -473,67 +423,109 @@ function PhasesOfWork() {
       title: "Consultation & Planning",
       description:
         "We begin by understanding your vision, aligning our approach through detailed discussions to create a tailored plan for your project.",
+      img: "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/about-us.png",
     },
     {
       title: "Pre-Production",
       description:
         "This phase includes preparation, such as location scouting, scriptwriting, and logistics setup, ensuring everything is ready for a smooth shoot day.",
+      img: "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/about-us.png",
     },
     {
       title: "Shooting/Production",
       description:
         "Our team captures your content with high-quality equipment and professional techniques, whether for a photo shoot, video shoot, or full event coverage.",
+      img: "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/about-us.png",
     },
     {
       title: "Post-Production",
       description:
         "We enhance the captured content with expert editing, color correction, sound design, and adjustments to create polished, impactful results.",
+      img: "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/about-us.png",
     },
     {
       title: "Client Review & Revisions",
       description:
         "We share the initial edits for your feedback and make any requested changes to ensure the final product meets your expectations.",
+      img: "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/about-us.png",
     },
   ];
 
   return (
-    <div className=" mt-20 md:mt-32 mx-auto max-w-7xl flex flex-col gap-8">
-      <div className=" pl-0 md:pl-40 flex gap-4 flex-col">
-        <div className="flex flex-col gap-2 mx-auto md:mx-0 w-fit">
-          <p className=" text-xl font-medium text-neutral-800">Process</p>
-          <div className="w-full h-[1px] bg-yellow-400 -translate-x-8"></div>
-        </div>
-        <p className=" text-neutral-800 text-4xl md:text-6xl text-center md:text-left font-medium font-playfair">
-          Phases of Work
-        </p>
-      </div>
-      <div className=" flex flex-col md:flex-row px-4 md:px-0 gap-6">
-        <img
-          className=" max-w-lg w-full rounded-xl h-full max-h-96 md:max-h-none object-cover"
-          src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/man-taking-selfie.jpg"
-          alt=""
-        />
-        <div className=" mx-auto flex w-full flex-col max-w-2xl gap-1">
-          {PhasesOfWork.map((item, index) => {
-            return (
-              <div key={index} className=" flex flex-col ">
-                <div className=" text-neutral-800 flex items-center gap-2">
-                  <p>0{index + 1}</p>
-                  <div className=" w-full h-[1px] bg-yellow-400"></div>
-                </div>
-                <div className=" md:pl-8 py-3 flex flex-col gap-2 md:gap-2">
-                  <p className=" text-neutral-800 text-3xl md:text-4xl font-playfair font-medium">
-                    {item.title}
-                  </p>
-                  <p className=" text-neutral-600 font-thin md:text-base">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+    <div className="mt-20 md:mt-32 px-4 mx-auto max-w-7xl flex flex-col gap-8">
+      <div className="flex gap-8 md:gap-12 flex-col">
+        <GradientButton>Process</GradientButton>
+        <div className="flex flex-col md:flex-row gap-8 md:gap-12">
+          <p className="text-neutral-800 h-fit md:sticky top-20 italic text-4xl md:text-6xl shrink-0 text-center md:text-left font-medium font-playfair">
+            Phases of Work
+          </p>
+
+          <div className="flex w-full flex-col gap-6">
+            {PhasesOfWork.map((item, index) => {
+              return (
+                <PhaseOfWorkCard
+                  key={index}
+                  title={item.title}
+                  description={item.description}
+                  img={item.img}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function PhaseOfWorkCard({ title, description, img }: any) {
+  const [isImageVesible, setIsImageVesible] = useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setIsImageVesible(true)}
+      onMouseLeave={() => setIsImageVesible(false)}
+      className=" p-6 md:p-8 border cursor-pointer relative rounded-3xl w-full flex flex-col gap-4 "
+    >
+      <p className=" text-3xl font-medium">{title}</p>
+      <p className=" text-gray-600">{description}</p>
+      <AnimatePresence>
+        {isImageVesible && (
+          <motion.div
+            animate={{
+              opacity: 1,
+              x: 0,
+              scale: 1,
+              rotate: -3,
+            }}
+            initial={{
+              opacity: 0,
+              x: 120,
+              scale: 0.9,
+              rotate: 5,
+            }}
+            exit={{
+              opacity: 0,
+              x: 120,
+              scale: 0.8,
+              rotate: 5,
+            }}
+            transition={{
+              duration: 0.6,
+              ease: "easeInOut",
+            }}
+            className="left-1/2 rounded-2xl overflow-hidden md:block hidden absolute -top-36"
+          >
+            <Image
+              width={170}
+              height={170}
+              className="rounded"
+              src={img}
+              alt=""
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -541,9 +533,7 @@ function PhasesOfWork() {
 function NewHeroSection() {
   return (
     <div className=" bg-gray-50 min-h-96 flex flex-col gap-6 justify-center items-center max-w-7xl py-4 px-4 mx-auto ">
-      <div className=" border bg-gradient-to-r cursor-pointer rounded-3xl px-2.5 border-gray-400 py-0.5 text-gray-600 text-xs font-semibold from-teal-100 to-sky-100 ">
-        View Gallary
-      </div>
+      <GradientButton link={"/pricing"}>View Gallary</GradientButton>
       <div className=" text-center text-5xl md:text-6xl font-medium max-w-3xl mx-auto">
         <span className=" italic font-playfair ">Learn </span>
         <span className=" font-bold">the correct </span>
@@ -602,10 +592,10 @@ function Gallary() {
   const [openedCategory, setOpenedCategory] = useState<string>("all");
   return (
     <div className=" max-w-7xl my-12 mx-auto px-4 flex flex-col gap-4 ">
-      <div className=" flex py-2 gap-2 md:gap-5 items-center justify-center">
+      <div className=" flex py-2 gap-2 md:gap-2 items-center justify-center">
         <div
           onClick={() => setOpenedCategory("all")}
-          className={` px-3 py-1.5 rounded-3xl cursor-pointer select-none hover:bg-gray-100 text-neutral-800 font-medium ${
+          className={` px-4 py-1.5 rounded-3xl cursor-pointer select-none hover:bg-gray-100 text-neutral-800 font-medium ${
             openedCategory === "all" && "border bg-gray-100 border-neutral-300"
           } `}
         >
@@ -613,7 +603,7 @@ function Gallary() {
         </div>
         <div
           onClick={() => setOpenedCategory("wedding")}
-          className={` px-3 py-1.5 rounded-3xl cursor-pointer select-none hover:bg-gray-100 text-neutral-800 font-medium ${
+          className={` px-4 py-1.5 rounded-3xl cursor-pointer select-none hover:bg-gray-100 text-neutral-800 font-medium ${
             openedCategory === "wedding" &&
             "border bg-gray-100 border-neutral-300"
           } `}
@@ -622,7 +612,7 @@ function Gallary() {
         </div>
         <div
           onClick={() => setOpenedCategory("corporate")}
-          className={` px-3 py-1.5 rounded-3xl cursor-pointer select-none hover:bg-gray-100 text-neutral-800 font-medium ${
+          className={` px-4 py-1.5 rounded-3xl cursor-pointer select-none hover:bg-gray-100 text-neutral-800 font-medium ${
             openedCategory === "corporate" &&
             "border bg-gray-100 border-neutral-300"
           } `}

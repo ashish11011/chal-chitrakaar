@@ -73,7 +73,7 @@ export const NavBar = ({
                   key={item.slug}
                   href={item.slug}
                   className={`cursor-pointer px-4 py-1.5 text-sm duration-300 hover:bg-neutral-200 rounded-t  md:px-5 md:text-base ${
-                    currentRoute === item.slug && "border-b border-yellow-400"
+                    currentRoute === item.slug && " bg-gray-200"
                   } `}
                 >
                   {item.name}

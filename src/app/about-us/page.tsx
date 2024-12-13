@@ -3,6 +3,7 @@ import { Footer, NavBar } from "@/components/layout";
 import { usePathname } from "next/navigation";
 import React from "react";
 import Image from "next/image";
+import { ImageWithBottomTitle } from "@/components/imageWithBottomTitle";
 
 const AboutUs = () => {
   const currentRoute = usePathname();
@@ -43,48 +44,36 @@ function Team() {
       <h2 className="text-4xl mb-12 font-semibold text-center text-neutral-800">
         Meet Our Team
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div className="text-center">
-          <Image
-            src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/chilly.JPG"
-            alt="Team Member 1"
-            width={300}
-            height={300}
-            className="rounded-lg h-96 object-cover mx-auto mb-4"
-          />
-          <h3 className="text-xl font-medium text-neutral-800">
-            Devanshu Vaishnav
-          </h3>
-          <p className="text-gray-400">Lead Photographer</p>
-        </div>
-        <div className="text-center">
-          <Image
-            src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gaurav.JPG"
-            alt="Team Member 2"
-            width={300}
-            height={300}
-            className="rounded-lg h-96 object-cover mx-auto mb-4"
-          />
-          <h3 className="text-xl font-medium text-neutral-800">
-            Gaurav Bairwa
-          </h3>
-          <p className="text-gray-400">Mediacrafter</p>
-        </div>
-        <div className="text-center">
-          <Image
-            src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/nitesh.jpg"
-            alt="Team Member 3"
-            width={300}
-            height={300}
-            className="rounded-lg h-96 object-cover mx-auto mb-4"
-          />
-          <h3 className="text-xl font-medium text-neutral-800">Nitesh Meena</h3>
-          <p className="text-gray-400">Cinematographer</p>
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 px-6 lg:grid-cols-3 gap-8">
+        {TeamCardData.map((item, index) => {
+          return (
+            <ImageWithBottomTitle
+              className="rotate-0"
+              key={index}
+              title={item.name}
+              img={item.img}
+            />
+          );
+        })}
       </div>
     </section>
   );
 }
+
+const TeamCardData = [
+  {
+    name: "Devanshu Vaishnav",
+    img: "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/chilly.JPG",
+  },
+  {
+    name: "Gaurav Bairwa",
+    img: "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gaurav.JPG",
+  },
+  {
+    name: "Nitesh Meena",
+    img: "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/nitesh.jpg",
+  },
+];
 
 function History() {
   return (
