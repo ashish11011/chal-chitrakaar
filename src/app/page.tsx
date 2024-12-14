@@ -3,7 +3,7 @@ import GradientButton from "@/components/gradientButton";
 import { ImageWithBottomTitle } from "@/components/imageWithBottomTitle";
 import { Footer, NavBar } from "@/components/layout";
 import TestimonialSection from "@/components/testimonials";
-import { InitialForm } from "@/components/websiteLoadForm";
+import { GetPriceQuote } from "@/components/websiteLoadForm";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -275,7 +275,7 @@ function AboutUs() {
           img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/about-us.png"
           title="About Chal Chitrakaar"
         />
-        <div className=" text-center flex  flex-col gap-8 md:gap-12">
+        <div className=" text-center flex  flex-col gap-8 md:gap-10">
           <p className="text-gray-600">
             At Chal Chitrakaar, we bring your creative visions to life with
             expert photography, videography, and editing services, crafting
@@ -299,14 +299,14 @@ function TitleOvarlapNumberCard({ title, number, className }: any) {
   return (
     <div
       className={cn(
-        "flex w-full md:w-1/2  flex-col mb-4 items-center gap-0",
+        "flex w-full md:w-1/2  flex-col mb-8 md:mb-6 items-center gap-0",
         className
       )}
     >
-      <p className="text-xl uppercase font-medium text-center text-gray-700">
+      <p className=" font-extrabold text-5xl text-gray-700">{number}+</p>
+      <p className="text-xl capitalize font-medium text-center  text-gray-400">
         {title}
       </p>
-      <p className=" font-extrabold text-4xl  text-gray-200">{number}+</p>
     </div>
   );
 }
@@ -544,9 +544,7 @@ function NewHeroSection() {
         capture amazing photos with your iPhone. No experience needed — just
         follow the steps and see the difference!
       </p>
-      <p className=" cursor-pointer border rounded hover:-translate-y-1 hover:bg-blue-600 duration-200 bg-blue-700 px-4 py-2 text-white font-medium">
-        Get Pricing Quote
-      </p>
+      <GetPriceQuote />
       <div className=" mt-4 border rounded -rotate-3  bg-gradient-to-r flex gap-3 justify-center items-center from-purple-100 px-3  font-medium text-center text-gray-700 py-1.5 via-blue-100 to-yellow-100">
         <Star fill="black" size={14} />
         Lemited time offer hire at less price
@@ -591,7 +589,7 @@ function ScrollPictureAnimationImage({ img }: { img: string }) {
 function Gallary() {
   const [openedCategory, setOpenedCategory] = useState<string>("all");
   return (
-    <div className=" max-w-7xl my-12 mx-auto px-4 flex flex-col gap-4 ">
+    <div className=" max-w-6xl my-12 mx-auto px-4 flex flex-col gap-4 ">
       <div className=" flex py-2 gap-2 md:gap-2 items-center justify-center">
         <div
           onClick={() => setOpenedCategory("all")}
@@ -620,23 +618,31 @@ function Gallary() {
           Corporate
         </div>
       </div>
-      <div className=" grid grid-cols-12 gap-2 md:gap-2">
+      <div className=" grid grid-cols-10 grid-rows-2 gap-2 md:gap-2">
         <GallaryImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_5797-min.jpg" />
-        <GallaryImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6576-min.jpg" />
-        <GallaryImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6656-min.jpg" />
+        <GallaryImage
+          className=" h-full md:row-span-2 w-full md:col-span-4"
+          img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6656-min.jpg"
+        />
+        <GallaryImage
+          className=" col-span-10"
+          img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6576-min.jpg"
+        />
         <GallaryImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_5797-min.jpg" />
-        <GallaryImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6656-min.jpg" />
         <GallaryImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_5797-min.jpg" />
-        <GallaryImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_5797-min.jpg" />
-        <GallaryImage img="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding/IMG_6576-min.jpg" />
       </div>
     </div>
   );
 }
 
-function GallaryImage({ img }: { img: string }) {
+function GallaryImage({ img, className }: { img: string; className?: string }) {
   return (
-    <div className=" w-full col-span-6 md:col-span-3 overflow-hidden h-64">
+    <div
+      className={cn(
+        " w-full col-span-5  md:col-span-3 overflow-hidden h-64",
+        className
+      )}
+    >
       <img
         className=" w-full h-full rounded md:rounded-none object-cover"
         src={img}

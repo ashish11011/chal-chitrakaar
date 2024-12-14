@@ -1,10 +1,9 @@
 "use client";
 import { Footer, NavBar } from "@/components/layout";
+import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Page = () => {
   const currentRoute = usePathname();
@@ -16,9 +15,11 @@ const Page = () => {
           {" "}
           Our Services
         </p>
-        <WeddingCard />
-        <Family />
-        <Gallery />
+        <div className=" max-w-5xl w-full mx-auto flex flex-col gap-16 px-4">
+          {servicesData.map((data, index) => (
+            <SingleServiceSection key={index} serviceData={data} />
+          ))}
+        </div>
       </div>
       <Footer currentRoute={currentRoute} />
     </div>
@@ -27,99 +28,163 @@ const Page = () => {
 
 export default Page;
 
-function WeddingCard() {
+function SingleServiceSection({ serviceData }: any) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(1);
+  const [direction, setDirection] = useState(0);
+  const handleNext = () => {
+    if (currentImageIndex < serviceData.imgs.length - 1) {
+      setDirection(1);
+      setCurrentImageIndex((prev) => prev + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentImageIndex > 0) {
+      setDirection(-1);
+      setCurrentImageIndex((prev) => prev - 1);
+    }
+  };
+
   return (
-    <div className=" px-4 md:px-0 border-y border-gray-500 max-w-7xl mx-auto flex gap-6 md:h-[34rem] flex-col md:flex-row">
-      <div className=" w-full h-full flex flex-col">
-        <p className=" text-neutral-800 text-4xl font-medium font-playfair py-7 md:py-12">
-          Wedding
+    <div className="flex w-full flex-col md:flex-row gap-8">
+      <div className="max-w-96 w-full flex flex-col gap-2">
+        <p className="text-3xl md:text-5xl font-medium h-fit">
+          {serviceData.title}
         </p>
-        <img
-          className=" h-full w-full object-cover"
-          src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding-1.jpg"
-          alt=""
-        />
-      </div>
-      <div className=" hidden md:block w-full h-full">
-        <img
-          className=" w-full h-full object-cover"
-          src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding-2.jpg"
-          alt=""
-        />
-      </div>
-      <div className=" w-full h-full flex flex-col gap-4">
-        <img
-          className=" h-full"
-          src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/wedding-3.jpg"
-          alt=""
-        />
-        <div className=" text-neutral-800 flex flex-col gap-6 py-6 ">
-          <p>
-            At Chal Chitrakaar, we capture your wedding's heartfelt moments with
-            artistic photography, cinematic videography, and expert editing,
-            creating timeless memories to treasure forever.
-          </p>
-          <ReadMore link={"/contact-us"} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ReadMore({ link }: { link: string }) {
-  return (
-    <div className=" w-fit mx-auto -translate-x-1/2 md:translate-x-0 md:mx-0">
-      <Link
-        href={link}
-        className=" size-16 rounded-full flex items-center cursor-pointer justify-center border group border-yellow-400 "
-      >
-        <div className=" text-gray-700 translate-x-1/2 bg-gray-50 py-1 flex gap-2 items-center group-hover:gap-4 duration-300 uppercase whitespace-nowrap">
-          Read More <ArrowRight stroke="#facc15" strokeWidth={1.5} size={20} />
-        </div>
-      </Link>
-    </div>
-  );
-}
-
-function Family() {
-  return (
-    <div className=" px-4 md:px-0 border-y border-gray-500 max-w-7xl mx-auto flex gap-6 md:h-[34rem] flex-col-reverse md:flex-row">
-      <div className=" w-full h-full flex flex-col md:flex-col-reverse gap-4">
-        <img
-          className=" h-full"
-          src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/family-1.jpg"
-          alt=""
-        />
-        <div className=" text-neutral-800 flex flex-col gap-6 py-6 ">
-          <p>
-            At Chal Chitrakaar, we capture genuine family moments with warm,
-            candid photography and videography, preserving the joy and essence
-            of your special times together.
-          </p>
-          <ReadMore link={"/contact-us"} />
-        </div>
-      </div>
-      <div className=" hidden md:block w-full h-full">
-        <img
-          className=" w-full h-full object-cover"
-          src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/family-2.jpg"
-          alt=""
-        />
-      </div>
-
-      <div className=" w-full h-full flex flex-col md:flex-col-reverse">
-        <p className=" text-neutral-800 text-5xl font-medium font-playfair py-7 md:py-12">
-          Famliy
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
+          quae ab quidem velit, nobis ex sed?
         </p>
-        <img
-          className=" h-full w-full object-cover"
-          src="https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/family-3.jpg"
-          alt=""
-        />
+      </div>
+
+      <div className="w-full overflow-hidden relative">
+        {currentImageIndex > 0 && (
+          <div
+            onClick={handlePrev}
+            className=" -z-10 w-5/6 absolute overflow-hidden rounded-xl top-1/2 left-0 h-5/6 -translate-y-1/2"
+          >
+            <motion.img
+              initial={{
+                opacity: 0.6,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              className=" w-full h-full object-cover"
+              src={serviceData.imgs[currentImageIndex - 1]}
+              alt=""
+            />
+          </div>
+        )}
+
+        <div className="z-20 w-5/6 mx-auto h-72">
+          {/* <AnimatePresence> */}
+          <motion.img
+            key={serviceData.imgs[currentImageIndex]}
+            initial={{
+              opacity: 0.6,
+              x: direction > 0 ? 80 : -80, // Slightly larger offset for smoother entry
+              scale: 0.95, // Subtle scaling effect
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              scale: 1,
+            }}
+            // exit={{
+            //   opacity: 0,
+            //   x: direction > 0 ? -80 : 80, // Opposite exit direction
+            //   scale: 0.95, // Complementary scaling for exit
+            // }}
+            transition={{
+              duration: 0.6, // Slightly longer for smoothness
+              ease: [0.25, 0.1, 0.25, 1], // Bezier curve for smooth easing
+            }}
+            className="w-full h-full object-cover rounded-xl"
+            src={serviceData.imgs[currentImageIndex]}
+            alt="current image"
+          />
+          {/* </AnimatePresence> */}
+        </div>
+
+        {currentImageIndex < serviceData.imgs.length - 1 && (
+          <div
+            onClick={handleNext}
+            className=" -z-10 w-5/6 absolute overflow-hidden rounded-xl top-1/2 right-0 h-5/6 -translate-y-1/2"
+          >
+            <motion.img
+              initial={{
+                opacity: 0.6,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              className=" w-full h-full object-cover "
+              src={serviceData.imgs[currentImageIndex + 1]}
+              alt=""
+            />
+          </div>
+        )}
+
+        <div
+          onClick={handlePrev}
+          className=" absolute left-0 top-0 h-full w-1/3  cursor-pointer"
+        ></div>
+        <div
+          onClick={handleNext}
+          className=" absolute right-0 top-0 h-full w-1/3 cursor-pointer"
+        ></div>
       </div>
     </div>
   );
 }
+
+const servicesData = [
+  {
+    title: "Wedding",
+    imgs: [
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP6842-min.jpg",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP7045-min.JPG",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/09-min.JPG",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/DSC04026-min.JPG",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/DSC04068-min.JPG",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/DSC04077-min.JPG",
+    ],
+  },
+  {
+    title: "Corporate",
+    imgs: [
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP6842-min.jpg",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP7045-min.JPG",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/09-min.JPG",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/DSC04026-min.JPG",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/DSC04068-min.JPG",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/DSC04077-min.JPG",
+    ],
+  },
+  {
+    title: "Events",
+    imgs: [
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP6842-min.jpg",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP7045-min.JPG",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/09-min.JPG",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/DSC04026-min.JPG",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/DSC04068-min.JPG",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/DSC04077-min.JPG",
+    ],
+  },
+  {
+    title: "Products",
+    imgs: [
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP6842-min.jpg",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP7045-min.JPG",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/09-min.JPG",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/DSC04026-min.JPG",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/DSC04068-min.JPG",
+      "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/DSC04077-min.JPG",
+    ],
+  },
+];
 
 const images = [
   "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP6842-min.jpg",
@@ -129,65 +194,3 @@ const images = [
   "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/DSC04068-min.JPG",
   "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/DSC04077-min.JPG",
 ];
-
-const Gallery = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const openModal = (image: any) => {
-    setSelectedImage(image);
-  };
-
-  const closeModal = () => {
-    setSelectedImage(null);
-  };
-
-  return (
-    <div className="container mx-auto py-12">
-      <h2 className="text-center text-3xl md:mt-8 md:text-4xl font-semibold text-white mb-8 md:mb-12">
-        Image Gallery
-      </h2>
-      <div className="grid grid-cols-1 px-4 md:grid-cols-3 lg:grid-cols-3 gap-6">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className="relative cursor-pointer"
-            onClick={() => openModal(image)}
-          >
-            <Image
-              src={image}
-              alt={`Gallery Image ${index + 1}`}
-              layout="responsive"
-              width={500}
-              height={300}
-              className="rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105"
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* Modal for selected image */}
-      {selectedImage && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
-          onClick={closeModal}
-        >
-          <div className="relative">
-            <Image
-              src={selectedImage}
-              alt="Selected Image"
-              width={800}
-              height={600}
-              className="rounded-lg"
-            />
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 text-white bg-gray-800 rounded-full size-8"
-            >
-              X
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};

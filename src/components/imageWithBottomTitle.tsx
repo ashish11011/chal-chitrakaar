@@ -10,7 +10,7 @@ export function ImageWithBottomTitle({ img, alt, title, className }: any) {
       )}
     >
       <img
-        className=" w-full h-full max-h-96 max-w-96 object-cover"
+        className=" w-full h-full max-h-96 object-cover"
         src={img}
         alt={alt || title}
       />
