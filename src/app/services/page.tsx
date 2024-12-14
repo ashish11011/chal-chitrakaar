@@ -4,18 +4,21 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const Page = () => {
   const currentRoute = usePathname();
   return (
-    <div className=" flex min-h-screen justify-between  flex-col gap-4">
+    <div className=" flex min-h-screen justify-between flex-col gap-4">
       <NavBar currentRoute={currentRoute} />
       <div className=" flex flex-col gap-8 ">
-        <p className=" text-5xl text-center text-neutral-800 font-medium py-8 mb-8">
+        {/* <p className=" text-5xl text-center text-neutral-800 font-medium py-8 mb-8">
           {" "}
           Our Services
-        </p>
-        <div className=" max-w-5xl w-full mx-auto flex flex-col gap-16 px-4">
+        </p> */}
+        <ServicesHeroSection />
+
+        <div className=" pb-8 max-w-5xl w-full mx-auto flex flex-col gap-16 px-4">
           {servicesData.map((data, index) => (
             <SingleServiceSection key={index} serviceData={data} />
           ))}
@@ -27,6 +30,18 @@ const Page = () => {
 };
 
 export default Page;
+
+function ServicesHeroSection() {
+  return (
+    <div className=" h-[24rem] md:h-[24em] w-full   bg-grid-black/[0.05]  relative flex items-center justify-center">
+      {/* Radial gradient for the container to give a faded look */}
+      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-gray-50 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      <p className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8">
+        Our Services
+      </p>
+    </div>
+  );
+}
 
 function SingleServiceSection({ serviceData }: any) {
   const [currentImageIndex, setCurrentImageIndex] = useState(1);
@@ -46,94 +61,60 @@ function SingleServiceSection({ serviceData }: any) {
   };
 
   return (
-    <div className="flex w-full flex-col md:flex-row gap-8">
+    <div className="flex w-full select-none flex-col md:flex-row gap-8">
       <div className="max-w-96 w-full flex flex-col gap-2">
-        <p className="text-3xl md:text-5xl font-medium h-fit">
+        <p className="text-3xl italic font-playfair  md:text-5xl font-medium h-fit">
           {serviceData.title}
         </p>
-        <p>
+        <p className=" text-gray-600">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
           quae ab quidem velit, nobis ex sed?
         </p>
       </div>
 
-      <div className="w-full overflow-hidden relative">
-        {currentImageIndex > 0 && (
-          <div
-            onClick={handlePrev}
-            className=" -z-10 w-5/6 absolute overflow-hidden rounded-xl top-1/2 left-0 h-5/6 -translate-y-1/2"
-          >
-            <motion.img
-              initial={{
-                opacity: 0.6,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              className=" w-full h-full object-cover"
-              src={serviceData.imgs[currentImageIndex - 1]}
-              alt=""
-            />
-          </div>
-        )}
-
-        <div className="z-20 w-5/6 mx-auto h-72">
-          {/* <AnimatePresence> */}
+      <div className="max-w-lg relative items-center h-72 mx-auto flex gap-4 w-full">
+        <div onClick={handlePrev} className="">
+          <ArrowLeft
+            color="#666"
+            className=" hover:scale-110 duration-200 hover:border-gray-600 cursor-pointer border rounded-full p-1"
+          />
+        </div>
+        <div className=" rounded-md overflow-hidden w-full h-full">
           <motion.img
-            key={serviceData.imgs[currentImageIndex]}
             initial={{
-              opacity: 0.6,
-              x: direction > 0 ? 80 : -80, // Slightly larger offset for smoother entry
-              scale: 0.95, // Subtle scaling effect
+              x: direction === 1 ? "100%" : "-100%",
+              opacity: 0,
             }}
             animate={{
-              opacity: 1,
               x: 0,
-              scale: 1,
+              opacity: 1,
             }}
-            // exit={{
-            //   opacity: 0,
-            //   x: direction > 0 ? -80 : 80, // Opposite exit direction
-            //   scale: 0.95, // Complementary scaling for exit
-            // }}
-            transition={{
-              duration: 0.6, // Slightly longer for smoothness
-              ease: [0.25, 0.1, 0.25, 1], // Bezier curve for smooth easing
-            }}
-            className="w-full h-full object-cover rounded-xl"
             src={serviceData.imgs[currentImageIndex]}
-            alt="current image"
+            className=" w-full h-full object-cover"
+            alt=""
           />
-          {/* </AnimatePresence> */}
         </div>
 
-        {currentImageIndex < serviceData.imgs.length - 1 && (
-          <div
-            onClick={handleNext}
-            className=" -z-10 w-5/6 absolute overflow-hidden rounded-xl top-1/2 right-0 h-5/6 -translate-y-1/2"
-          >
-            <motion.img
-              initial={{
-                opacity: 0.6,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              className=" w-full h-full object-cover "
-              src={serviceData.imgs[currentImageIndex + 1]}
-              alt=""
-            />
-          </div>
-        )}
+        {/* Dots representing total images */}
+        <div className=" absolute flex gap-0.5 -bottom-5 right-1/2 translate-x-1/2">
+          {serviceData.imgs.map((_: any, index: number) => (
+            <div
+              key={index}
+              className={cn(
+                "w-2 h-2 rounded-full border border-gray-400",
+                currentImageIndex === index && "w-2 bg-gray-400"
+              )}
+            ></div>
+          ))}
+        </div>
 
-        <div
-          onClick={handlePrev}
-          className=" absolute left-0 top-0 h-full w-1/3  cursor-pointer"
-        ></div>
-        <div
-          onClick={handleNext}
-          className=" absolute right-0 top-0 h-full w-1/3 cursor-pointer"
-        ></div>
+        {/* Next image handler */}
+        <div onClick={handleNext} className="">
+          <ArrowRight
+            color="#666"
+            className=" hover:scale-110 duration-200 hover:border-gray-600 cursor-pointer border rounded-full p-1"
+          />
+        </div>
       </div>
     </div>
   );
