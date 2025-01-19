@@ -66,10 +66,7 @@ function SingleServiceSection({ serviceData }: any) {
         <p className="text-3xl italic font-playfair  md:text-5xl font-medium h-fit">
           {serviceData.title}
         </p>
-        <p className=" text-gray-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-          quae ab quidem velit, nobis ex sed?
-        </p>
+        <p className=" text-gray-600">{serviceData.description}</p>
       </div>
 
       <div className="max-w-lg relative items-center h-72 mx-auto flex gap-4 w-full">
@@ -123,6 +120,8 @@ function SingleServiceSection({ serviceData }: any) {
 const servicesData = [
   {
     title: "Wedding",
+    description:
+      "Capturing the love and joy of your special day with timeless elegance.",
     imgs: [
       "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP6842-min.jpg",
       "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP7045-min.JPG",
@@ -134,6 +133,7 @@ const servicesData = [
   },
   {
     title: "Corporate",
+    description: "Showcasing professionalism with polished corporate visuals.",
     imgs: [
       "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP6842-min.jpg",
       "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP7045-min.JPG",
@@ -145,6 +145,8 @@ const servicesData = [
   },
   {
     title: "Events",
+    description:
+      "Capturing the energy and excitement of your memorable occasions.",
     imgs: [
       "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP6842-min.jpg",
       "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP7045-min.JPG",
@@ -156,6 +158,8 @@ const servicesData = [
   },
   {
     title: "Products",
+    description:
+      "Highlighting your products with striking and detailed imagery.",
     imgs: [
       "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP6842-min.jpg",
       "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/gallary/_YSP7045-min.JPG",

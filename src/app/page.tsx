@@ -23,162 +23,6 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const currentRoute = usePathname();
-  const testimonialsData1: any = [
-    {
-      name: "Aarav Sharma",
-      designation: "Bride",
-      msg: "Chal Chitrakaar made our wedding day unforgettable! The team captured every moment so beautifully, and the video left us in tears. Thank you for preserving our memories!",
-    },
-    {
-      name: "Priya Mehta",
-      designation: "Bride",
-      msg: "From the pre-wedding shoot to the final edited video, Chal Chitrakaar exceeded our expectations. The quality of work is beyond amazing!",
-    },
-    {
-      name: "Anjali Gupta",
-      designation: "Bride",
-      msg: "Their attention to detail is exceptional. We felt like the team truly understood our vision and delivered stunning photos and videos for our wedding.",
-    },
-    {
-      name: "Rajesh Verma",
-      designation: "Father of the Bride",
-      msg: "Absolutely thrilled with our family photoshoot! Chal Chitrakaar captured the essence of our family’s bond perfectly.",
-    },
-    {
-      name: "Siddharth Reddy",
-      designation: "Groom",
-      msg: "The cinematography and editing are top-notch! They turned our wedding day into a cinematic masterpiece.",
-    },
-    {
-      name: "Neha Joshi",
-      designation: "Bride",
-      msg: "The team was so professional and friendly, and the results were amazing. Our wedding photos are a treasure we'll keep for a lifetime.",
-    },
-    {
-      name: "Shubham Kapoor",
-      designation: "Groom",
-      msg: "Chal Chitrakaar’s team made us feel so comfortable during our photoshoot. The final shots were breathtaking – we’re so happy with them!",
-    },
-    {
-      name: "Ravi Kumar",
-      designation: "Groom",
-      msg: "Thank you for capturing the most special moments of our big day! The photos and videos were just what we imagined – and more.",
-    },
-    {
-      name: "Sanya Patel",
-      designation: "Mother of the Bride",
-      msg: "I can't express how happy I am with the photos from our family gathering. Every little moment was captured so beautifully.",
-    },
-    {
-      name: "Ankit Verma",
-      designation: "Husband",
-      msg: "Chal Chitrakaar turned our anniversary celebration into a work of art. The photos and video reflect the love we share so perfectly.",
-    },
-  ];
-  const testimonialsData2: any = [
-    {
-      name: "Rina Shah",
-      designation: "Wife",
-      msg: "We hired Chal Chitrakaar for our baby shower, and they did a phenomenal job. The memories they've created for us are priceless.",
-    },
-    {
-      name: "Vikram Yadav",
-      designation: "Groom",
-      msg: "The video highlight reel from our wedding was everything we wanted and more. It was like watching our love story unfold on screen!",
-    },
-    {
-      name: "Alok Prakash",
-      designation: "Bride",
-      msg: "Such a great team to work with! They made our wedding experience seamless, and the photos are absolutely stunning.",
-    },
-    {
-      name: "Meera Soni",
-      designation: "Bride",
-      msg: "The team took the time to understand what we wanted for our wedding and nailed it. The quality of work was phenomenal.",
-    },
-    {
-      name: "Gaurav Choudhary",
-      designation: "Groom",
-      msg: "If you want your memories to be captured beautifully, Chal Chitrakaar is the team to hire. We couldn’t have asked for better.",
-    },
-    {
-      name: "Simran Arora",
-      designation: "Bride",
-      msg: "Our pre-wedding shoot was nothing short of magical, thanks to Chal Chitrakaar. They made us feel like stars!",
-    },
-    {
-      name: "Deepak Sharma",
-      designation: "Father of the Bride",
-      msg: "The professionalism and passion shown by the team were incredible. Our wedding album is a perfect reflection of our journey.",
-    },
-    {
-      name: "Sunita Rao",
-      designation: "Mother of the Bride",
-      msg: "Chal Chitrakaar captured every detail of our milestone birthday. We have such vivid memories thanks to their impeccable work.",
-    },
-    {
-      name: "Nikhil Singh",
-      designation: "Groom",
-      msg: "Our family reunion wouldn’t have been the same without Chal Chitrakaar. The photos are fantastic and truly represent the spirit of our gathering.",
-    },
-    {
-      name: "Jasleen Kaur",
-      designation: "Bride",
-      msg: "The cinematic video they created for our wedding is more than just a video – it's a beautiful piece of art.",
-    },
-  ];
-  const testimonialsData3: any = [
-    {
-      name: "Naveen Patil",
-      designation: "Groom",
-      msg: "Our wedding day was so special, and Chal Chitrakaar captured every little moment that made it unique. Highly recommend!",
-    },
-    {
-      name: "Roshni Verma",
-      designation: "Mother of the Groom",
-      msg: "We hired Chal Chitrakaar for a corporate event, and the team did an amazing job. The photos were professional, and the video was engaging.",
-    },
-    {
-      name: "Vikrant Kumar",
-      designation: "Father of the Groom",
-      msg: "The team was super accommodating, and they captured our family’s essence perfectly. We’ll cherish these photos forever.",
-    },
-    {
-      name: "Kavita Gupta",
-      designation: "Bride",
-      msg: "I can’t thank Chal Chitrakaar enough for their incredible work. The photos and video were beyond what we imagined.",
-    },
-    {
-      name: "Ishaan Mehta",
-      designation: "Groom",
-      msg: "The level of creativity and artistry displayed in our wedding video was breathtaking. Chal Chitrakaar truly delivered.",
-    },
-    {
-      name: "Sonia Chhabra",
-      designation: "Bride",
-      msg: "Our photoshoot experience was nothing short of perfect. The team made sure every detail was captured just right.",
-    },
-    {
-      name: "Vishal Kumar",
-      designation: "Groom",
-      msg: "Chal Chitrakaar delivered far beyond our expectations. Their passion for what they do truly shines through in their work.",
-    },
-    {
-      name: "Madhuri Yadav",
-      designation: "Bride",
-      msg: "The entire experience with Chal Chitrakaar was amazing – professional, friendly, and the end result was more than we could have asked for.",
-    },
-    {
-      name: "Karan Joshi",
-      designation: "Groom",
-      msg: "From concept to execution, Chal Chitrakaar turned our wedding into a fairytale. The videos and photos were absolutely stunning!",
-    },
-    {
-      name: "Aditi Sethi",
-      designation: "Bride",
-      msg: "We couldn’t be happier with the photos and videos from our family’s special occasion. Chal Chitrakaar made it all come to life perfectly.",
-    },
-  ];
 
   return (
     <div className="w-full bg-gray-50 min-h-screen">
@@ -420,33 +264,33 @@ function Family() {
 function PhasesOfWork() {
   const PhasesOfWork = [
     {
-      title: "Consultation & Planning",
+      title: "Vision & Planning",
       description:
-        "We begin by understanding your vision, aligning our approach through detailed discussions to create a tailored plan for your project.",
+        "We begin by understanding your unique story and requirements, collaborating with you to craft a detailed plan that aligns with your vision.",
       img: "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/about-us.png",
     },
     {
-      title: "Pre-Production",
+      title: "Pre-Shoot Preparation",
       description:
-        "This phase includes preparation, such as location scouting, scriptwriting, and logistics setup, ensuring everything is ready for a smooth shoot day.",
+        "This phase includes meticulous planning like location scouting, theme development, and logistics to ensure every detail is in place for a flawless shoot.",
       img: "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/about-us.png",
     },
     {
-      title: "Shooting/Production",
+      title: "Capture the Moments",
       description:
-        "Our team captures your content with high-quality equipment and professional techniques, whether for a photo shoot, video shoot, or full event coverage.",
+        "Our expert team uses professional-grade equipment and techniques to beautifully capture your moments, whether it's a wedding, corporate event, or product shoot.",
       img: "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/about-us.png",
     },
     {
-      title: "Post-Production",
+      title: "Editing & Enhancement",
       description:
-        "We enhance the captured content with expert editing, color correction, sound design, and adjustments to create polished, impactful results.",
+        "We transform raw footage into stunning visuals through expert editing, color grading, sound design, and meticulous adjustments for a polished result.",
       img: "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/about-us.png",
     },
     {
-      title: "Client Review & Revisions",
+      title: "Client Feedback & Delivery",
       description:
-        "We share the initial edits for your feedback and make any requested changes to ensure the final product meets your expectations.",
+        "We share the edited content for your review, incorporate your feedback, and ensure the final masterpiece exceeds your expectations.",
       img: "https://s3.ap-south-1.amazonaws.com/chal.chitrakaar/about-us.png",
     },
   ];
@@ -534,20 +378,20 @@ function NewHeroSection() {
   return (
     <div className=" bg-gray-50 min-h-96 flex flex-col gap-6 justify-center items-center max-w-7xl py-4 px-4 mx-auto ">
       <GradientButton link={"/pricing"}>View Gallary</GradientButton>
-      <div className=" text-center text-5xl md:text-6xl font-medium max-w-3xl mx-auto">
-        <span className=" italic font-playfair ">Learn </span>
-        <span className=" font-bold">the correct </span>
-        <span>way to use your iPhone camera</span>
+      <div className=" text-center text-5xl md:text-6xl  max-w-3xl mx-auto">
+        <span className=" italic font-playfair ">Discover </span>
+        <span className=" font-bold">the art </span>
+        <span>of Capturing Moments with Chal Chitrakaar Studio</span>
       </div>
       <p className=" text-gray-600 text-center max-w-2xl mx-auto">
-        In this step-by-step course, learn the exact settings and techniques to
-        capture amazing photos with your iPhone. No experience needed — just
-        follow the steps and see the difference!
+        Explore a step-by-step journey with Chal Chitrakaar Studio to master the
+        art of photography and videography. From perfect settings to creative
+        techniques, we’ll help you create stunning visuals effortlessly!
       </p>
       <GetPriceQuote />
       <div className=" mt-4 border rounded -rotate-3  bg-gradient-to-r flex gap-3 justify-center items-center from-purple-100 px-3  font-medium text-center text-gray-700 py-1.5 via-blue-100 to-yellow-100">
         <Star fill="black" size={14} />
-        Lemited time offer hire at less price
+        Limited Time Offer: Hire Us at a Discounted Price!
         <Star fill="black" size={14} />
       </div>
     </div>

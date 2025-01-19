@@ -27,10 +27,10 @@ const AboutUs = () => {
 function AboutUsHero() {
   return (
     <div className=" max-w-7xl mt-6 w-full h-full mx-auto px-4 flex flex-col md:flex-row">
-      <div className=" text-4xl flex justify-center -translate-y-6 flex-col gap-2 text-gray-600 text-left  md:text-right">
-        We are experienced{" "}
-        <span className=" text-4xl md:text-6xl text-gray-900 capitalize font-playfair">
-          photographers
+      <div className=" text-3xl flex justify-center -translate-y-6 flex-col gap-2 text-gray-600 text-left w-full max-w-lg">
+        We Are Professional Photographers
+        <span className=" text-3xl md:text-5xl text-gray-900 capitalize font-playfair">
+          with Years of Experience
         </span>{" "}
       </div>
       <div className=" w-full h-full min-h-[24rem] md:min-h-[28rem] grid-cols-9 gap-1 grid grid-rows-8">
@@ -109,13 +109,14 @@ function History() {
       </h2>
       <div className="flex flex-col-reverse gap-8 items-center justify-center">
         <div className="flex-1">
-          <p className=" max-w-2xl mx-auto text-center text-gray-600 mb-4">
-            To create exceptional, high-quality photography and videography
-            services that preserve the beauty and emotion of life's most
-            important moments. With over 3 years of experience, our team has
-            worked on weddings, family shoots, corporate events, and more. We
-            pride ourselves on our ability to capture memories that will last a
-            lifetime.
+          <p className=" max-w-2xl mt-6 mx-auto text-center text-gray-600">
+            At Chal Chitrakaar Studio, our mission is to deliver exceptional,
+            high-quality photography and videography services that beautifully
+            preserve the essence and emotion of life’s most cherished moments.
+            With over 3 years of professional experience, our team has
+            successfully captured weddings, family milestones, corporate events,
+            and much more. We take pride in our ability to turn fleeting moments
+            into timeless memories that you’ll treasure forever.
           </p>
         </div>
         <div className="flex-1 w-full">
@@ -142,7 +143,7 @@ function ContactUs() {
   return (
     <div className=" flex max-w-6xl mx-auto w-full p-8 flex-col gap-8">
       <p className=" text-center">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa, magnam!
+        {/* Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa, magnam! */}
       </p>
       <div className=" flex gap-6 flex-col md:flex-row">
         {contactInfoData.map((item, index) => {

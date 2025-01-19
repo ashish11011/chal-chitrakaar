@@ -217,7 +217,7 @@ export const Footer = ({
                 type="text"
                 value={newsletterMail}
                 onChange={(e) => setNewsletterMail(e.target.value)}
-                className=" w-full text-gray-300 bg-transparent focus:border border-neutral-600 outline-none p-2"
+                className=" w-full text-gray-600 bg-transparent focus:border border-neutral-600 outline-none p-2"
                 placeholder="Email@gmail.com"
               />
               <div
@@ -229,7 +229,7 @@ export const Footer = ({
               </div>
             </form>
             {newsletterResponse && (
-              <p className=" text-gray-300 text-sm">{newsletterResponse}</p>
+              <p className=" text-gray-600 text-sm">{newsletterResponse}</p>
             )}
           </div>
         </div>
